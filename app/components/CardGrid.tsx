@@ -43,8 +43,8 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
               className="mb-6 transition-all duration-300 cursor-pointer"
             >
               <div
-                className={`w-32 rounded-lg border-2 shadow-lg transition-all duration-300 hover:scale-105 hover:-translate-y-4 hover:-translate-x-2 ${
-                  isSelected ? 'border-yellow-400' : 'border-stone-600'
+                className={`w-32 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:-translate-y-4 hover:-translate-x-2 ${
+                  isSelected ? 'border-2 border-yellow-400' : ''
                 }`}
                 style={{ aspectRatio: '2.5/3.5' }}
               >
@@ -98,8 +98,8 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
               }}
             >
               <div
-                className={`w-40 md:w-48 lg:w-56 rounded-lg border-2 shadow-lg transition-all duration-300 hover:scale-110 hover:-translate-y-8 hover:-translate-x-4 hover:rotate-0 ${
-                  isSelected ? 'border-yellow-400' : 'border-stone-600'
+                className={`w-40 md:w-48 lg:w-56 rounded-lg shadow-lg transition-all duration-300 hover:scale-110 hover:-translate-y-8 hover:-translate-x-4 hover:rotate-0 ${
+                  isSelected ? 'border-2 border-yellow-400' : ''
                 }`}
                 style={{ aspectRatio: '2.5/3.5' }}
               >
