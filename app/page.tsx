@@ -135,7 +135,7 @@ export default function Home() {
         />
       )}
       <main className="flex-1 p-4 md:p-6 overflow-hidden">
-        <div className="h-full max-w-7xl mx-auto">
+        <div className="h-full w-full mx-auto">
           <CardGrid
             cards={cards}
             selectedCards={selectedCards}

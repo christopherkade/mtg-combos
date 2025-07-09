@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useRef, useEffect, useState } from 'react';
 import { Card } from '../types';
 import { getCardImage, getCardName } from '../utils/cardUtils';
 
@@ -11,6 +12,20 @@ interface CardGridProps {
 }
 
 export default function CardGrid({ cards, selectedCards, onCardClick }: CardGridProps) {
+  const desktopContainerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  useEffect(() => {
+    function updateWidth() {
+      if (desktopContainerRef.current) {
+        setContainerWidth(desktopContainerRef.current.offsetWidth);
+      }
+    }
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
+
   return (
     <div className="flex justify-center items-center h-full pb-8">
       {/* Mobile: Vertical stack with scroll */}
@@ -28,23 +43,23 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
               className="mb-6 transition-all duration-300 cursor-pointer"
             >
               <div
-                className={`w-32 border-2 shadow-lg transition-all duration-300 hover:scale-105 hover:-translate-y-4 hover:-translate-x-2 ${
+                className={`w-32 rounded-lg border-2 shadow-lg transition-all duration-300 hover:scale-105 hover:-translate-y-4 hover:-translate-x-2 ${
                   isSelected ? 'border-yellow-400' : 'border-stone-600'
-                } rounded-[12px] overflow-hidden`}
+                }`}
                 style={{ aspectRatio: '2.5/3.5' }}
               >
                 {imageUrl ? (
-                  <div className="relative w-full h-full rounded-[12px] overflow-hidden">
+                  <div className="relative w-full h-full">
                     <Image
                       src={imageUrl}
                       alt={cardName}
                       fill
-                      className="object-contain rounded-[12px]"
+                      className="object-contain"
                       sizes="128px"
                     />
                   </div>
                 ) : (
-                  <div className="w-full h-full bg-stone-200 flex items-center justify-center rounded-[12px]">
+                  <div className="w-full h-full bg-stone-200 flex items-center justify-center">
                     <p className="text-stone-700 text-center p-2 text-xs font-serif">Image not available</p>
                   </div>
                 )}
@@ -55,18 +70,17 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
       </div>
 
       {/* Desktop: Horizontal layout */}
-      <div className="hidden md:flex relative items-end justify-center" style={{ height: '400px', width: '100%' }}>
+      <div ref={desktopContainerRef} className="hidden md:flex relative items-end justify-center w-full" style={{ height: '400px' }}>
         {cards.map((card, index) => {
           const imageUrl = getCardImage(card);
           const cardName = getCardName(card);
           const isSelected = selectedCards.has(card.id);
           
-          // Even spacing calculation
+          // Dynamic spacing calculation
           const totalCards = cards.length;
-          const containerWidth = 1200; // Approximate container width
           const cardWidth = 224; // Increased card width in pixels
-          const totalSpacing = containerWidth - (totalCards * cardWidth);
-          const spacingBetweenCards = totalSpacing / (totalCards - 1);
+          const totalSpacing = containerWidth > 0 ? containerWidth - (totalCards * cardWidth) : 0;
+          const spacingBetweenCards = totalCards > 1 ? totalSpacing / (totalCards - 1) : 0;
           
           // Calculate position for even distribution
           const cardPosition = (index * cardWidth) + (index * spacingBetweenCards);
@@ -84,23 +98,23 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
               }}
             >
               <div
-                className={`w-40 md:w-48 lg:w-56 border-2 shadow-lg transition-all duration-300 hover:scale-110 hover:-translate-y-8 hover:-translate-x-4 hover:rotate-0 ${
+                className={`w-40 md:w-48 lg:w-56 rounded-lg border-2 shadow-lg transition-all duration-300 hover:scale-110 hover:-translate-y-8 hover:-translate-x-4 hover:rotate-0 ${
                   isSelected ? 'border-yellow-400' : 'border-stone-600'
-                } rounded-[12px] overflow-hidden`}
+                }`}
                 style={{ aspectRatio: '2.5/3.5' }}
               >
                 {imageUrl ? (
-                  <div className="relative w-full h-full rounded-[12px] overflow-hidden">
+                  <div className="relative w-full h-full">
                     <Image
                       src={imageUrl}
                       alt={cardName}
                       fill
-                      className="object-contain rounded-[12px]"
+                      className="object-contain"
                       sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
                     />
                   </div>
                 ) : (
-                  <div className="w-full h-full bg-stone-200 flex items-center justify-center rounded-[12px]">
+                  <div className="w-full h-full bg-stone-200 flex items-center justify-center">
                     <p className="text-stone-700 text-center p-2 text-xs font-serif">Image not available</p>
                   </div>
                 )}
