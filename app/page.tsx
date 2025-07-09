@@ -1,102 +1,159 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useEffect } from 'react';
+import combosData from '../data/combos.json';
+import { Card, Combo } from './types';
+import { fetchCardByName } from './utils/cardUtils';
+import CardGrid from './components/CardGrid';
+import GameControls from './components/GameControls';
+import LoadingSpinner from './components/LoadingSpinner';
+import ErrorDisplay from './components/ErrorDisplay';
+import CardAnimation from './components/CardAnimation';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [cards, setCards] = useState<Card[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [currentCombo, setCurrentCombo] = useState<Combo | null>(null);
+  const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set());
+  const [gameResult, setGameResult] = useState<'win' | 'lose' | null>(null);
+  const [showResult, setShowResult] = useState(false);
+  const [showCardAnimation, setShowCardAnimation] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const fetchRandomCards = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      setSelectedCards(new Set());
+      setGameResult(null);
+      setShowResult(false);
+      setShowCardAnimation(false);
+      
+      // Select a random combo
+      const combos = combosData.combos as Combo[];
+      const randomCombo = combos[Math.floor(Math.random() * combos.length)];
+      setCurrentCombo(randomCombo);
+      
+      // Fetch combo cards
+      const comboCardPromises = randomCombo.cards.map(cardName => fetchCardByName(cardName));
+      const comboCards = await Promise.all(comboCardPromises);
+      
+      // Fetch additional random cards to fill the grid (7 total - combo cards)
+      const remainingSlots = 7 - comboCards.length;
+      const randomCardPromises = Array.from({ length: remainingSlots }, () =>
+        fetch('https://api.scryfall.com/cards/random')
+          .then(res => {
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            return res.json();
+          })
+      );
+      
+      const randomCards = await Promise.all(randomCardPromises);
+      
+      // Combine combo cards and random cards
+      const allCards = [...comboCards, ...randomCards];
+      
+      // Shuffle the cards to randomize positions
+      const shuffledCards = allCards.sort(() => Math.random() - 0.5);
+      
+      setCards(shuffledCards);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to fetch cards');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchRandomCards();
+  }, []);
+
+  useEffect(() => {
+    if (showResult && gameResult === 'lose') {
+      const timer = setTimeout(() => {
+        setShowResult(false);
+        setGameResult(null);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [showResult, gameResult]);
+
+  const handleCardClick = (cardId: string) => {
+    const newSelectedCards = new Set(selectedCards);
+    if (newSelectedCards.has(cardId)) {
+      newSelectedCards.delete(cardId);
+    } else {
+      newSelectedCards.add(cardId);
+    }
+    setSelectedCards(newSelectedCards);
+  };
+
+  const validateSelection = () => {
+    if (!currentCombo) return;
+
+    const selectedCardNames = Array.from(selectedCards).map(cardId => {
+      const card = cards.find(c => c.id === cardId);
+      return card ? card.name : '';
+    });
+
+    const comboCardNames = currentCombo.cards;
+    const isCorrect = comboCardNames.every(name => selectedCardNames.includes(name)) &&
+                     selectedCardNames.every(name => comboCardNames.includes(name)) &&
+                     selectedCardNames.length === comboCardNames.length;
+
+    setGameResult(isCorrect ? 'win' : 'lose');
+    setShowResult(true);
+
+    if (isCorrect) {
+      setShowCardAnimation(true);
+    }
+  };
+
+  const resetGame = () => {
+    setSelectedCards(new Set());
+    setGameResult(null);
+    setShowResult(false);
+  };
+
+  const handleAnimationComplete = () => {
+    fetchRandomCards();
+  };
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <ErrorDisplay error={error} onRetry={fetchRandomCards} />;
+  }
+
+  return (
+    <div className="h-screen bg-gradient-to-br from-stone-800 via-stone-700 to-stone-900 flex flex-col">
+      {showCardAnimation && (
+        <CardAnimation 
+          onAnimationComplete={handleAnimationComplete}
+        />
+      )}
+      <main className="flex-1 p-4 md:p-6 overflow-hidden">
+        <div className="h-full max-w-7xl mx-auto">
+          <CardGrid
+            cards={cards}
+            selectedCards={selectedCards}
+            onCardClick={handleCardClick}
+          />
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="flex-shrink-0 p-4 md:p-6">
+        <GameControls
+          currentCombo={currentCombo}
+          selectedCards={selectedCards}
+          gameResult={gameResult}
+          showResult={showResult}
+          onNewGame={fetchRandomCards}
+          onCheckAnswer={validateSelection}
+          onPlayAgain={resetGame}
+        />
       </footer>
     </div>
   );

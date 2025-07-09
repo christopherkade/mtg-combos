@@ -1,0 +1,164 @@
+{
+  "combos": [
+    {
+      "name": "Kiki-Jiki + Pestermite",
+      "description": "Infinite creature tokens",
+      "cards": [
+        "Kiki-Jiki, Mirror Breaker",
+        "Pestermite"
+      ]
+    },
+    {
+      "name": "Splinter Twin + Deceiver Exarch",
+      "description": "Infinite creature tokens",
+      "cards": [
+        "Splinter Twin",
+        "Deceiver Exarch"
+      ]
+    },
+    {
+      "name": "Flash + Protean Hulk",
+      "description": "Instant speed creature tutoring",
+      "cards": [
+        "Flash",
+        "Protean Hulk"
+      ]
+    },
+    {
+      "name": "Thopter Foundry + Sword of the Meek",
+      "description": "Infinite life and tokens",
+      "cards": [
+        "Thopter Foundry",
+        "Sword of the Meek"
+      ]
+    },
+    {
+      "name": "Time Vault + Voltaic Key",
+      "description": "Infinite turns",
+      "cards": [
+        "Time Vault",
+        "Voltaic Key"
+      ]
+    },
+    {
+      "name": "Dark Depths + Thespian's Stage",
+      "description": "20/20 flying indestructible token",
+      "cards": [
+        "Dark Depths",
+        "Thespian's Stage"
+      ]
+    },
+    {
+      "name": "Painter's Servant + Grindstone",
+      "description": "Mill opponent's entire deck",
+      "cards": [
+        "Painter's Servant",
+        "Grindstone"
+      ]
+    },
+    {
+      "name": "Helm of Obedience + Leyline of the Void",
+      "description": "Mill opponent's entire deck",
+      "cards": [
+        "Helm of Obedience",
+        "Leyline of the Void"
+      ]
+    },
+    {
+      "name": "Squirrel Nest + Earthcraft",
+      "description": "Infinite squirrel tokens",
+      "cards": [
+        "Squirrel Nest",
+        "Earthcraft"
+      ]
+    },
+    {
+      "name": "Intruder Alarm + Birds of Paradise",
+      "description": "Infinite mana",
+      "cards": [
+        "Intruder Alarm",
+        "Birds of Paradise"
+      ]
+    },
+    {
+      "name": "Goblin Recruiter + Goblin Ringleader",
+      "description": "Tutor and draw goblins",
+      "cards": [
+        "Goblin Recruiter",
+        "Goblin Ringleader"
+      ]
+    },
+    {
+      "name": "Survival of the Fittest + Squee, Goblin Nabob",
+      "description": "Tutor any creature",
+      "cards": [
+        "Survival of the Fittest",
+        "Squee, Goblin Nabob"
+      ]
+    },
+    {
+      "name": "Hermit Druid + Dread Return",
+      "description": "Mill library and reanimate",
+      "cards": [
+        "Hermit Druid",
+        "Dread Return"
+      ]
+    },
+    {
+      "name": "Cephalid Illusionist + Nomads en-Kor",
+      "description": "Mill entire library",
+      "cards": [
+        "Cephalid Illusionist",
+        "Nomads en-Kor"
+      ]
+    },
+    {
+      "name": "Aluren + Cavern Harpy",
+      "description": "Infinite creature bouncing",
+      "cards": [
+        "Aluren",
+        "Cavern Harpy"
+      ]
+    },
+    {
+      "name": "Food Chain + Misthollow Griffin",
+      "description": "Infinite mana and cast from exile",
+      "cards": [
+        "Food Chain",
+        "Misthollow Griffin"
+      ]
+    },
+    {
+      "name": "Isochron Scepter + Dramatic Reversal",
+      "description": "Infinite mana",
+      "cards": [
+        "Isochron Scepter",
+        "Dramatic Reversal"
+      ]
+    },
+    {
+      "name": "Paradox Engine + Mana Rocks",
+      "description": "Infinite mana and untaps",
+      "cards": [
+        "Paradox Engine",
+        "Sol Ring"
+      ]
+    },
+    {
+      "name": "Aetherflux Reservoir + Storm",
+      "description": "Gain life and deal damage",
+      "cards": [
+        "Aetherflux Reservoir",
+        "Grapeshot"
+      ]
+    },
+    {
+      "name": "Ad Nauseam + Angel's Grace",
+      "description": "Draw entire deck safely",
+      "cards": [
+        "Ad Nauseam",
+        "Angel's Grace"
+      ]
+    }
+  ]
+} 
