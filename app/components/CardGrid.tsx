@@ -49,17 +49,17 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
                 style={{ aspectRatio: '2.5/3.5' }}
               >
                 {imageUrl ? (
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full h-full overflow-hidden rounded-xl">
                     <Image
                       src={imageUrl}
                       alt={cardName}
                       fill
-                      className="object-contain"
+                      className="object-contain rounded-xl"
                       sizes="128px"
                     />
                   </div>
                 ) : (
-                  <div className="w-full h-full bg-stone-200 flex items-center justify-center">
+                  <div className="w-full h-full bg-stone-200 flex items-center justify-center rounded-xl overflow-hidden">
                     <p className="text-stone-700 text-center p-2 text-xs font-serif">Image not available</p>
                   </div>
                 )}
@@ -104,17 +104,17 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
                 style={{ aspectRatio: '2.5/3.5' }}
               >
                 {imageUrl ? (
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full h-full overflow-hidden rounded-xl">
                     <Image
                       src={imageUrl}
                       alt={cardName}
                       fill
-                      className="object-contain"
+                      className="object-contain rounded-xl"
                       sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
                     />
                   </div>
                 ) : (
-                  <div className="w-full h-full bg-stone-200 flex items-center justify-center">
+                  <div className="w-full h-full bg-stone-200 flex items-center justify-center rounded-xl overflow-hidden">
                     <p className="text-stone-700 text-center p-2 text-xs font-serif">Image not available</p>
                   </div>
                 )}
