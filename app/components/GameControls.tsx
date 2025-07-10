@@ -11,7 +11,6 @@ interface GameControlsProps {
   onNewGame: () => void;
   onCheckAnswer: () => void;
   streak: number;
-  loading: boolean;
 }
 
 export default function GameControls({
@@ -22,7 +21,6 @@ export default function GameControls({
   onNewGame,
   onCheckAnswer,
   streak,
-  loading,
 }: GameControlsProps) {
   const [buttonLabel, setButtonLabel] = useState<"check" | "wrong">("check");
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -78,16 +76,15 @@ export default function GameControls({
             </button>
           </div>
           {/* Effect text in the center */}
-          {!loading && (
-            <div className="flex-1 text-center md:text-left">
-              <p className="text-yellow-200 font-semibold text-sm font-serif">
-                Find the cards that create this effect:
-              </p>
-              <p className="text-stone-50 text-xl font-serif">
-                {currentCombo.description}
-              </p>
-            </div>
-          )}
+          <div className="flex-1 text-center md:text-left">
+            <p className="text-yellow-200 font-semibold text-sm font-serif">
+              Find the cards that create this effect:
+            </p>
+            <p className="text-stone-50 text-xl font-serif">
+              {currentCombo.description}
+            </p>
+          </div>
+
           {/* Streak and settings on the right */}
           <div
             className="flex items-center justify-center md:justify-end relative gap-2"

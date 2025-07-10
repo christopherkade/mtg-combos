@@ -6,7 +6,6 @@ import { Card, Combo } from "./types";
 import { fetchCardByName } from "./utils/cardUtils";
 import CardGrid from "./components/CardGrid";
 import GameControls from "./components/GameControls";
-import LoadingSpinner from "./components/LoadingSpinner";
 import ErrorDisplay from "./components/ErrorDisplay";
 import CardAnimation from "./components/CardAnimation";
 
@@ -145,6 +144,13 @@ export default function Home() {
     return <ErrorDisplay error={error} onRetry={fetchRandomCards} />;
   }
 
+  // 7 placeholder cards for loading state
+  const placeholderCards = Array.from({ length: 7 }, (_, i) => ({
+    id: `placeholder-${i}`,
+    name: "",
+    image_uris: { normal: "" },
+  }));
+
   return (
     <div className="h-screen bg-gradient-to-br from-stone-800 via-stone-700 to-stone-900 flex flex-col border-8 border-slate-950 rounded-xl">
       {congrats && (
@@ -158,19 +164,15 @@ export default function Home() {
         <CardAnimation onAnimationComplete={handleAnimationComplete} />
       )}
       <>
-        {loading ? (
-          <LoadingSpinner />
-        ) : (
-          <main className="flex-1 p-4 md:p-6 overflow-hidden">
-            <div className="w-full h-full mx-auto">
-              <CardGrid
-                cards={cards}
-                selectedCards={selectedCards}
-                onCardClick={handleCardClick}
-              />
-            </div>
-          </main>
-        )}
+        <main className="flex-1 p-4 md:p-6 overflow-hidden">
+          <div className="w-full h-full mx-auto">
+            <CardGrid
+              cards={loading ? placeholderCards : cards}
+              selectedCards={selectedCards}
+              onCardClick={handleCardClick}
+            />
+          </div>
+        </main>
 
         <div className="fixed bottom-0 left-0 w-full z-40">
           <GameControls
@@ -184,7 +186,6 @@ export default function Home() {
             }}
             onCheckAnswer={validateSelection}
             streak={streak}
-            loading={loading}
           />
         </div>
       </>
