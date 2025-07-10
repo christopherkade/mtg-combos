@@ -31,7 +31,7 @@ export default function CardGrid({
   }, []);
 
   return (
-    <div className="flex justify-center items-center h-full pb-8">
+    <div className="flex justify-center items-center h-full pb-50 md:pb-8">
       {/* Mobile: Vertical stack with scroll */}
       <div className="md:hidden relative flex flex-col items-center h-full w-full px-4 overflow-y-auto py-4">
         {cards.map((card, index) => {
@@ -97,11 +97,22 @@ export default function CardGrid({
           // Calculate position for even distribution
           const cardPosition = index * cardWidth + index * spacingBetweenCards;
 
+          // Listen to "Enter" or "Space" press and select the focused card when used
+          const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              onCardClick(card.id);
+              // Unfocus the element after selection
+              (e.target as HTMLElement).blur();
+            }
+          };
+
           return (
             <div
               key={`${card.id}-${index}`}
               data-card-id={card.id}
               onClick={() => onCardClick(card.id)}
+              onKeyDown={handleKeyDown}
               className="absolute transition-all duration-300 cursor-pointer"
               style={{
                 left: `${cardPosition}px`,
@@ -110,7 +121,8 @@ export default function CardGrid({
               }}
             >
               <div
-                className={`w-40 md:w-48 lg:w-56 rounded-lg shadow-lg transition-all hover:scale-110 hover:-translate-y-8 hover:-translate-x-4 hover:rotate-0 ${
+                tabIndex={0}
+                className={`w-40 md:w-48 lg:w-56 rounded-lg shadow-lg transition-all hover:scale-110 hover:-translate-y-8 hover:-translate-x-4 hover:rotate-0 focus:outline-yellow-100 focus:outline-2 ${
                   isSelected ? "outline-2 outline-yellow-400" : ""
                 }`}
                 style={{ aspectRatio: "2.5/3.5" }}

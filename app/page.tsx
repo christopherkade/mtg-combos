@@ -178,7 +178,10 @@ export default function Home() {
             selectedCards={selectedCards}
             gameResult={gameResult}
             showResult={showResult}
-            onNewGame={fetchRandomCards}
+            onNewGame={() => {
+              setStreak(0);
+              fetchRandomCards();
+            }}
             onCheckAnswer={validateSelection}
             streak={streak}
             loading={loading}
