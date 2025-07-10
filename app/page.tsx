@@ -134,12 +134,6 @@ export default function Home() {
     }
   };
 
-  const resetGame = () => {
-    setSelectedCards(new Set());
-    setGameResult(null);
-    setShowResult(false);
-  };
-
   const handleAnimationComplete = () => {
     fetchRandomCards();
   };

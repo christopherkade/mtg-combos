@@ -34,7 +34,7 @@ export default function CardAnimation({ onAnimationComplete }: CardAnimationProp
       
       // Phase 2: Move pile off screen
       const moveTimer = setTimeout(() => {
-        cards.forEach((card, index) => {
+        cards.forEach((card) => {
           card.style.left = `${window.innerWidth + 200}px`;
           card.style.top = `${centerY}px`; // No vertical offset
           card.style.transform = 'rotate(45deg)';
