@@ -8,10 +8,12 @@ import CardGrid from "./components/CardGrid";
 import GameControls from "./components/GameControls";
 import ErrorDisplay from "./components/ErrorDisplay";
 import CardAnimation from "./components/CardAnimation";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 export default function Home() {
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(true);
+  const [initialLoading, setInitialLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentCombo, setCurrentCombo] = useState<Combo | null>(null);
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set());
@@ -77,6 +79,7 @@ export default function Home() {
       setError(err instanceof Error ? err.message : "Failed to fetch cards");
     } finally {
       setLoading(false);
+      setInitialLoading(false);
     }
   };
 
@@ -89,7 +92,7 @@ export default function Home() {
       const timer = setTimeout(() => {
         setShowResult(false);
         setGameResult(null);
-      }, 2000);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [showResult, gameResult]);
@@ -130,7 +133,7 @@ export default function Home() {
       setTimeout(() => {
         setCongrats(null);
         setShowCardAnimation(true);
-      }, 1700);
+      }, 1000);
     } else {
       setStreak(0);
     }
@@ -153,6 +156,7 @@ export default function Home() {
 
   return (
     <div className="h-screen bg-gradient-to-br from-stone-800 via-stone-700 to-stone-900 flex flex-col border-8 border-slate-950 rounded-xl">
+      {initialLoading && <LoadingSpinner />}
       {congrats && (
         <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
           <div className="bg-yellow-900/90 border-4 border-yellow-400 rounded-2xl px-12 py-8 shadow-2xl text-yellow-100 font-bold text-3xl font-serif text-center animate-fade-in">

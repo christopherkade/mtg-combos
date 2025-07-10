@@ -11,6 +11,19 @@ interface CardGridProps {
   onCardClick: (cardId: string) => void;
 }
 
+// CardBack component for Magic card back image
+function CardBack() {
+  return (
+    <Image
+      src="/mtg-back.webp"
+      alt="Magic card back"
+      fill
+      className="object-contain w-full h-full rounded-xl"
+      draggable={false}
+    />
+  );
+}
+
 export default function CardGrid({
   cards,
   selectedCards,
@@ -88,7 +101,7 @@ export default function CardGrid({
               key={`${card.id}-${index}`}
               data-card-id={card.id}
               onClick={() => onCardClick(card.id)}
-              className="mb-6 transition-all duration-300 cursor-pointer"
+              className="mb-6 cursor-pointer"
             >
               <div
                 tabIndex={0}
@@ -115,13 +128,7 @@ export default function CardGrid({
                       className="card-flip-front absolute top-0 left-0 w-full h-full"
                       style={{ zIndex: flipped[card.id] ? "0" : "100" }}
                     >
-                      <Image
-                        src="/mtg-back.webp"
-                        alt="Magic card back"
-                        fill
-                        className="object-contain w-full h-full rounded-xl"
-                        draggable={false}
-                      />
+                      <CardBack />
                     </div>
                     {/* Card front */}
                     <div
@@ -189,7 +196,7 @@ export default function CardGrid({
               data-card-id={card.id}
               onClick={() => onCardClick(card.id)}
               onKeyDown={handleKeyDown}
-              className="absolute transition-all duration-300 cursor-pointer"
+              className="absolute cursor-pointer"
               style={{
                 left: `${cardPosition}px`,
                 bottom: "20px",
@@ -217,16 +224,10 @@ export default function CardGrid({
                   >
                     {/* Card back */}
                     <div
-                      className="card-flip-front absolute top-0 left-0 w-full h-full z-10"
-                      style={{ zIndex: flipped[card.id] ? "0" : "100" }}
+                      className="card-flip-front absolute top-0 left-0 w-full h-full"
+                      style={{ width: "100%", height: "100%" }}
                     >
-                      <Image
-                        src="/mtg-back.webp"
-                        alt="Magic card back"
-                        fill
-                        className="object-contain w-full h-full rounded-xl"
-                        draggable={false}
-                      />
+                      <CardBack />
                     </div>
                     {/* Card front */}
                     <div

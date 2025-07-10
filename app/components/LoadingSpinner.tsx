@@ -1,10 +1,8 @@
+// Simple centered spinner for initial load
 export default function LoadingSpinner() {
   return (
-    <div className="h-screen bg-gradient-to-br from-stone-800 via-stone-700 to-stone-900 flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-yellow-500 mx-auto mb-4"></div>
-        <p className="text-yellow-200 text-lg font-serif">Loading ancient spells...</p>
-      </div>
+    <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-stone-900/80">
+      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-yellow-400"></div>
     </div>
   );
-} 
+}

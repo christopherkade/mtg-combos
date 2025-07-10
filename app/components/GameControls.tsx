@@ -33,7 +33,7 @@ export default function GameControls({
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
         setButtonLabel("check");
-      }, 2000);
+      }, 1000);
     }
   }, [showResult, gameResult]);
 
