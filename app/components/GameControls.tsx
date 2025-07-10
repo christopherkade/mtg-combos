@@ -10,7 +10,6 @@ interface GameControlsProps {
   showResult: boolean;
   onNewGame: () => void;
   onCheckAnswer: () => void;
-  onPlayAgain: () => void;
   streak: number;
 }
 
@@ -21,11 +20,9 @@ export default function GameControls({
   showResult,
   onNewGame,
   onCheckAnswer,
-  onPlayAgain,
   streak
 }: GameControlsProps) {
   const [buttonLabel, setButtonLabel] = useState<'check' | 'wrong'>('check');
-  const [shake, setShake] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -33,11 +30,9 @@ export default function GameControls({
   useEffect(() => {
     if (showResult && gameResult === 'lose') {
       setButtonLabel('wrong');
-      setShake(true);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
         setButtonLabel('check');
-        setShake(false);
       }, 2000);
     }
   }, [showResult, gameResult]);

@@ -184,7 +184,6 @@ export default function Home() {
           showResult={showResult}
           onNewGame={fetchRandomCards}
           onCheckAnswer={validateSelection}
-          onPlayAgain={resetGame}
           streak={streak}
         />
       </footer>

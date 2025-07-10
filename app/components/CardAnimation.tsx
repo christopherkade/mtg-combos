@@ -1,14 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 interface CardAnimationProps {
   onAnimationComplete: () => void;
 }
 
 export default function CardAnimation({ onAnimationComplete }: CardAnimationProps) {
-  const [animationPhase, setAnimationPhase] = useState<'pile' | 'move' | 'complete'>('pile');
-
   useEffect(() => {
     // Get all card elements
     const cardElements = document.querySelectorAll('[data-card-id]');
@@ -34,8 +32,6 @@ export default function CardAnimation({ onAnimationComplete }: CardAnimationProp
         card.style.pointerEvents = 'none';
       });
       
-      setAnimationPhase('move');
-      
       // Phase 2: Move pile off screen
       const moveTimer = setTimeout(() => {
         cards.forEach((card, index) => {
@@ -46,7 +42,6 @@ export default function CardAnimation({ onAnimationComplete }: CardAnimationProp
         
         // Phase 3: Complete animation
         const completeTimer = setTimeout(() => {
-          setAnimationPhase('complete');
           onAnimationComplete();
         }, 1000);
         
