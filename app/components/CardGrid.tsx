@@ -98,7 +98,7 @@ export default function CardGrid({
             >
               <div
                 tabIndex={0}
-                className={`w-48 rounded-lg shadow-lg transition-all duration-300 md:hover:scale-105 md:hover:-translate-y-4 md:hover:-translate-x-2 focus:outline-yellow-100 focus:outline-2 ${
+                className={`w-48 rounded-lg shadow-lg transition-all duration-300 md:hover:scale-105 md:hover:-translate-y-4 md:hover:-translate-x-2 ${
                   isSelected ? "outline-2 outline-yellow-400" : ""
                 }`}
                 style={{ aspectRatio: "2.5/3.5", position: "relative" }}
@@ -193,7 +193,7 @@ export default function CardGrid({
             >
               <div
                 tabIndex={0}
-                className={`w-40 md:w-48 lg:w-56 rounded-lg shadow-lg transition-all hover:scale-110 hover:-translate-y-8 hover:-translate-x-4 hover:rotate-0 focus:outline-yellow-100 focus:outline-2 ${
+                className={`w-40 md:w-48 lg:w-56 rounded-lg shadow-lg transition-all hover:scale-110 hover:-translate-y-8 hover:-translate-x-4 hover:rotate-0 ${
                   isSelected ? "outline-2 outline-yellow-400" : ""
                 }`}
                 style={{ aspectRatio: "2.5/3.5", position: "relative" }}
