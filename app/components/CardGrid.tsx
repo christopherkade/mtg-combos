@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useRef, useEffect, useState } from 'react';
-import { Card } from '../types';
-import { getCardImage, getCardName } from '../utils/cardUtils';
+import Image from "next/image";
+import { useRef, useEffect, useState } from "react";
+import { Card } from "../types";
+import { getCardImage, getCardName } from "../utils/cardUtils";
 
 interface CardGridProps {
   cards: Card[];
@@ -11,7 +11,11 @@ interface CardGridProps {
   onCardClick: (cardId: string) => void;
 }
 
-export default function CardGrid({ cards, selectedCards, onCardClick }: CardGridProps) {
+export default function CardGrid({
+  cards,
+  selectedCards,
+  onCardClick,
+}: CardGridProps) {
   const desktopContainerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
 
@@ -22,8 +26,8 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
       }
     }
     updateWidth();
-    window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
   return (
@@ -34,7 +38,7 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
           const imageUrl = getCardImage(card);
           const cardName = getCardName(card);
           const isSelected = selectedCards.has(card.id);
-          
+
           return (
             <div
               key={`${card.id}-${index}`}
@@ -44,9 +48,9 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
             >
               <div
                 className={`w-48 rounded-lg shadow-lg transition-all duration-300 md:hover:scale-105 md:hover:-translate-y-4 md:hover:-translate-x-2 ${
-                  isSelected ? 'border-2 border-yellow-400' : ''
+                  isSelected ? "border-2 border-yellow-400" : ""
                 }`}
-                style={{ aspectRatio: '2.5/3.5' }}
+                style={{ aspectRatio: "2.5/3.5" }}
               >
                 {imageUrl ? (
                   <div className="relative w-full h-full overflow-hidden rounded-xl">
@@ -60,7 +64,9 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
                   </div>
                 ) : (
                   <div className="w-full h-full bg-stone-200 flex items-center justify-center rounded-xl overflow-hidden">
-                    <p className="text-stone-700 text-center p-2 text-xs font-serif">Image not available</p>
+                    <p className="text-stone-700 text-center p-2 text-xs font-serif">
+                      Image not available
+                    </p>
                   </div>
                 )}
               </div>
@@ -70,20 +76,26 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
       </div>
 
       {/* Desktop: Horizontal layout */}
-      <div ref={desktopContainerRef} className="hidden md:flex relative items-end justify-center w-full" style={{ height: '250px' }}>
+      <div
+        ref={desktopContainerRef}
+        className="hidden md:flex relative items-end justify-center w-full"
+        style={{ height: "250px" }}
+      >
         {cards.map((card, index) => {
           const imageUrl = getCardImage(card);
           const cardName = getCardName(card);
           const isSelected = selectedCards.has(card.id);
-          
+
           // Dynamic spacing calculation
           const totalCards = cards.length;
           const cardWidth = 224; // Increased card width in pixels
-          const totalSpacing = containerWidth > 0 ? containerWidth - (totalCards * cardWidth) : 0;
-          const spacingBetweenCards = totalCards > 1 ? totalSpacing / (totalCards - 1) : 0;
-          
+          const totalSpacing =
+            containerWidth > 0 ? containerWidth - totalCards * cardWidth : 0;
+          const spacingBetweenCards =
+            totalCards > 1 ? totalSpacing / (totalCards - 1) : 0;
+
           // Calculate position for even distribution
-          const cardPosition = (index * cardWidth) + (index * spacingBetweenCards);
+          const cardPosition = index * cardWidth + index * spacingBetweenCards;
 
           return (
             <div
@@ -93,15 +105,15 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
               className="absolute transition-all duration-300 cursor-pointer"
               style={{
                 left: `${cardPosition}px`,
-                bottom: '20px',
+                bottom: "20px",
                 zIndex: 10 + index,
               }}
             >
               <div
-                className={`w-40 md:w-48 lg:w-56 rounded-lg shadow-lg transition-all duration-300 hover:scale-110 hover:-translate-y-8 hover:-translate-x-4 hover:rotate-0 ${
-                  isSelected ? 'border-2 border-yellow-400' : ''
+                className={`w-40 md:w-48 lg:w-56 rounded-lg shadow-lg transition-all hover:scale-110 hover:-translate-y-8 hover:-translate-x-4 hover:rotate-0 ${
+                  isSelected ? "outline-2 outline-yellow-400" : ""
                 }`}
-                style={{ aspectRatio: '2.5/3.5' }}
+                style={{ aspectRatio: "2.5/3.5" }}
               >
                 {imageUrl ? (
                   <div className="relative w-full h-full overflow-hidden rounded-xl">
@@ -115,7 +127,9 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
                   </div>
                 ) : (
                   <div className="w-full h-full bg-stone-200 flex items-center justify-center rounded-xl overflow-hidden">
-                    <p className="text-stone-700 text-center p-2 text-xs font-serif">Image not available</p>
+                    <p className="text-stone-700 text-center p-2 text-xs font-serif">
+                      Image not available
+                    </p>
                   </div>
                 )}
               </div>
@@ -125,4 +139,4 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
       </div>
     </div>
   );
-} 
+}
