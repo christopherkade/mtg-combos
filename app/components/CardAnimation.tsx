@@ -1,15 +1,17 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 interface CardAnimationProps {
   onAnimationComplete: () => void;
 }
 
-export default function CardAnimation({ onAnimationComplete }: CardAnimationProps) {
+export default function CardAnimation({
+  onAnimationComplete,
+}: CardAnimationProps) {
   useEffect(() => {
     // Get all card elements
-    const cardElements = document.querySelectorAll('[data-card-id]');
+    const cardElements = document.querySelectorAll("[data-card-id]");
     const cards = Array.from(cardElements) as HTMLElement[];
 
     if (cards.length === 0) {
@@ -21,38 +23,38 @@ export default function CardAnimation({ onAnimationComplete }: CardAnimationProp
     const pileTimer = setTimeout(() => {
       const centerX = window.innerWidth / 2 - 112; // Adjusted for larger card size
       const centerY = window.innerHeight / 2 - 156; // Adjusted for larger card size
-      
+
       cards.forEach((card, index) => {
-        card.style.position = 'fixed';
-        card.style.left = `${centerX + (index * 2)}px`;
-        card.style.top = `${centerY - 100}px`;
+        card.style.position = "fixed";
+        card.style.left = `${centerX + index * 2}px`;
+        card.style.top = `${centerY}px`;
         card.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
         card.style.zIndex = (index + 100).toString();
-        card.style.transition = 'all 1s ease-in-out';
-        card.style.pointerEvents = 'none';
+        card.style.transition = "all 1s ease-in-out";
+        card.style.pointerEvents = "none";
       });
-      
+
       // Phase 2: Move pile off screen
       const moveTimer = setTimeout(() => {
         cards.forEach((card) => {
           card.style.left = `${window.innerWidth + 200}px`;
           card.style.top = `${centerY}px`; // No vertical offset
-          card.style.transform = 'rotate(45deg)';
+          card.style.transform = "rotate(45deg)";
         });
-        
+
         // Phase 3: Complete animation
         const completeTimer = setTimeout(() => {
           onAnimationComplete();
         }, 1000);
-        
+
         return () => clearTimeout(completeTimer);
       }, 800);
-      
+
       return () => clearTimeout(moveTimer);
     }, 100);
-    
+
     return () => clearTimeout(pileTimer);
   }, [onAnimationComplete]);
 
   return null; // This component doesn't render anything, it just manipulates existing elements
-} 
+}
