@@ -62,12 +62,12 @@ export default function GameControls({
               onClick={onCheckAnswer}
               className={`${selectedCards.size < 1 ? 'cursor-not-allowed' : 'cursor-pointer'} font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-colors duration-200 shadow-lg text-sm md:text-base font-serif border ${
                 buttonLabel === 'wrong'
-                  ? 'bg-red-700 text-red-100 border-red-500 animate-shake'
-                  : 'bg-green-700 hover:bg-green-600 text-green-100 border-green-500 hover:shadow-xl'
+                  ? 'bg-red-700 text-stone-50 animate-shake'
+                  : 'bg-green-700 hover:bg-green-600 text-green-100 text-stone-50 hover:shadow-xl'
               }${selectedCards.size < 1 ? ' opacity-50' : ''}`}
               disabled={selectedCards.size < 1}
             >
-              {buttonLabel === 'wrong' ? '❌ Wrong Answer' : '✅ Check Answer'}
+              {buttonLabel === 'wrong' ? 'Wrong Answer' : 'Check Answer'}
             </button>
           </div>
           {/* Effect text in the center */}
@@ -75,13 +75,13 @@ export default function GameControls({
             <p className="text-yellow-200 font-semibold text-sm md:text-base font-serif">
               Find the cards that create this effect:
             </p>
-            <p className="text-yellow-100 text-sm font-serif">
+            <p className="text-stone-50 text-sm font-serif">
               {currentCombo.description}
             </p>
           </div>
           {/* Streak and settings on the right */}
           <div className="flex items-center justify-center md:justify-end relative gap-2" ref={dropdownRef}>
-            <span className="bg-yellow-900/80 rounded-xl px-6 py-2 shadow text-yellow-100 font-bold text-base font-serif whitespace-nowrap">
+            <span className="bg-yellow-900/80 rounded-xl px-6 py-2 shadow text-stone-50 font-bold text-base font-serif whitespace-nowrap">
               Winning Streak: {streak}
             </span>
             {/* Settings icon */}
