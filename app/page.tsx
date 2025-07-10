@@ -157,10 +157,10 @@ export default function Home() {
       {showCardAnimation && (
         <CardAnimation onAnimationComplete={handleAnimationComplete} />
       )}
-      {loading ? (
-        <LoadingSpinner />
-      ) : (
-        <>
+      <>
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
           <main className="flex-1 p-4 md:p-6 overflow-hidden">
             <div className="w-full h-full mx-auto">
               <CardGrid
@@ -170,20 +170,21 @@ export default function Home() {
               />
             </div>
           </main>
+        )}
 
-          <div className="fixed bottom-0 left-0 w-full z-40">
-            <GameControls
-              currentCombo={currentCombo}
-              selectedCards={selectedCards}
-              gameResult={gameResult}
-              showResult={showResult}
-              onNewGame={fetchRandomCards}
-              onCheckAnswer={validateSelection}
-              streak={streak}
-            />
-          </div>
-        </>
-      )}
+        <div className="fixed bottom-0 left-0 w-full z-40">
+          <GameControls
+            currentCombo={currentCombo}
+            selectedCards={selectedCards}
+            gameResult={gameResult}
+            showResult={showResult}
+            onNewGame={fetchRandomCards}
+            onCheckAnswer={validateSelection}
+            streak={streak}
+            loading={loading}
+          />
+        </div>
+      </>
     </div>
   );
 }
