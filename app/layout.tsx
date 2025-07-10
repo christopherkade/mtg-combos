@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MTG Combos - Magic: The Gathering Card Explorer",
-  description: "Discover random Magic: The Gathering cards from the multiverse using the Scryfall API",
+  title: "MTG Combos - A Magic: The Gathering Mini Game",
+  description: "Find the Magic: The Gathering cards that create a specific combo !",
 };
 
 export default function RootLayout({
