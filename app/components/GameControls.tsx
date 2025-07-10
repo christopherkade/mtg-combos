@@ -72,10 +72,10 @@ export default function GameControls({
           </div>
           {/* Effect text in the center */}
           <div className="flex-1 text-center md:text-left">
-            <p className="text-yellow-200 font-semibold text-sm md:text-base font-serif">
+            <p className="text-yellow-200 font-semibold text-sm font-serif">
               Find the cards that create this effect:
             </p>
-            <p className="text-stone-50 text-sm font-serif">
+            <p className="text-stone-50 text-xl font-serif">
               {currentCombo.description}
             </p>
           </div>
