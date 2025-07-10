@@ -71,15 +71,7 @@
         "Squirrel Nest",
         "Earthcraft"
       ]
-    },
-    {
-      "name": "Intruder Alarm + Birds of Paradise",
-      "description": "Infinite mana",
-      "cards": [
-        "Intruder Alarm",
-        "Birds of Paradise"
-      ]
-    },
+    },    
     {
       "name": "Goblin Recruiter + Goblin Ringleader",
       "description": "Tutor and draw goblins",

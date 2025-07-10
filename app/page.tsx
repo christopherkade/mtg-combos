@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import combosData from '../data/combos.json';
-import { Card, Combo } from './types';
-import { fetchCardByName } from './utils/cardUtils';
-import CardGrid from './components/CardGrid';
-import GameControls from './components/GameControls';
-import LoadingSpinner from './components/LoadingSpinner';
-import ErrorDisplay from './components/ErrorDisplay';
-import CardAnimation from './components/CardAnimation';
+import { useState, useEffect } from "react";
+import combosData from "../data/combos.json";
+import { Card, Combo } from "./types";
+import { fetchCardByName } from "./utils/cardUtils";
+import CardGrid from "./components/CardGrid";
+import GameControls from "./components/GameControls";
+import LoadingSpinner from "./components/LoadingSpinner";
+import ErrorDisplay from "./components/ErrorDisplay";
+import CardAnimation from "./components/CardAnimation";
 
 export default function Home() {
   const [cards, setCards] = useState<Card[]>([]);
@@ -16,7 +16,7 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [currentCombo, setCurrentCombo] = useState<Combo | null>(null);
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set());
-  const [gameResult, setGameResult] = useState<'win' | 'lose' | null>(null);
+  const [gameResult, setGameResult] = useState<"win" | "lose" | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [showCardAnimation, setShowCardAnimation] = useState(false);
   const [streak, setStreak] = useState(0);
@@ -33,7 +33,7 @@ export default function Home() {
     "You found the combo!",
     "Victory!",
     "Excellent!",
-    "You got it!"
+    "You got it!",
   ];
 
   const fetchRandomCards = async () => {
@@ -44,37 +44,38 @@ export default function Home() {
       setGameResult(null);
       setShowResult(false);
       setShowCardAnimation(false);
-      
+
       // Select a random combo
       const combos = combosData.combos as Combo[];
       const randomCombo = combos[Math.floor(Math.random() * combos.length)];
       setCurrentCombo(randomCombo);
-      
+
       // Fetch combo cards
-      const comboCardPromises = randomCombo.cards.map(cardName => fetchCardByName(cardName));
+      const comboCardPromises = randomCombo.cards.map((cardName) =>
+        fetchCardByName(cardName)
+      );
       const comboCards = await Promise.all(comboCardPromises);
-      
+
       // Fetch additional random cards to fill the grid (7 total - combo cards)
       const remainingSlots = 7 - comboCards.length;
       const randomCardPromises = Array.from({ length: remainingSlots }, () =>
-        fetch('https://api.scryfall.com/cards/random')
-          .then(res => {
-            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-            return res.json();
-          })
+        fetch("https://api.scryfall.com/cards/random").then((res) => {
+          if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+          return res.json();
+        })
       );
-      
+
       const randomCards = await Promise.all(randomCardPromises);
-      
+
       // Combine combo cards and random cards
       const allCards = [...comboCards, ...randomCards];
-      
+
       // Shuffle the cards to randomize positions
       const shuffledCards = allCards.sort(() => Math.random() - 0.5);
-      
+
       setCards(shuffledCards);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch cards');
+      setError(err instanceof Error ? err.message : "Failed to fetch cards");
     } finally {
       setLoading(false);
     }
@@ -85,7 +86,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (showResult && gameResult === 'lose') {
+    if (showResult && gameResult === "lose") {
       const timer = setTimeout(() => {
         setShowResult(false);
         setGameResult(null);
@@ -107,23 +108,25 @@ export default function Home() {
   const validateSelection = () => {
     if (!currentCombo) return;
 
-    const selectedCardNames = Array.from(selectedCards).map(cardId => {
-      const card = cards.find(c => c.id === cardId);
-      return card ? card.name : '';
+    const selectedCardNames = Array.from(selectedCards).map((cardId) => {
+      const card = cards.find((c) => c.id === cardId);
+      return card ? card.name : "";
     });
 
     const comboCardNames = currentCombo.cards;
-    const isCorrect = comboCardNames.every(name => selectedCardNames.includes(name)) &&
-                     selectedCardNames.every(name => comboCardNames.includes(name)) &&
-                     selectedCardNames.length === comboCardNames.length;
+    const isCorrect =
+      comboCardNames.every((name) => selectedCardNames.includes(name)) &&
+      selectedCardNames.every((name) => comboCardNames.includes(name)) &&
+      selectedCardNames.length === comboCardNames.length;
 
-    setGameResult(isCorrect ? 'win' : 'lose');
+    setGameResult(isCorrect ? "win" : "lose");
     setShowResult(true);
 
     if (isCorrect) {
       setStreak((prev) => prev + 1);
       // Show congrats overlay
-      const msg = congratsMessages[Math.floor(Math.random() * congratsMessages.length)];
+      const msg =
+        congratsMessages[Math.floor(Math.random() * congratsMessages.length)];
       setCongrats(msg);
       setTimeout(() => {
         setCongrats(null);
@@ -137,10 +140,6 @@ export default function Home() {
   const handleAnimationComplete = () => {
     fetchRandomCards();
   };
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
 
   if (error) {
     return <ErrorDisplay error={error} onRetry={fetchRandomCards} />;
@@ -156,31 +155,35 @@ export default function Home() {
         </div>
       )}
       {showCardAnimation && (
-        <CardAnimation 
-          onAnimationComplete={handleAnimationComplete}
-        />
+        <CardAnimation onAnimationComplete={handleAnimationComplete} />
       )}
-      <main className="flex-1 p-4 md:p-6 overflow-hidden">
-        <div className="w-full h-full mx-auto">
-          <CardGrid
-            cards={cards}
-            selectedCards={selectedCards}
-            onCardClick={handleCardClick}
-          />
-        </div>        
-      </main>
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <main className="flex-1 p-4 md:p-6 overflow-hidden">
+            <div className="w-full h-full mx-auto">
+              <CardGrid
+                cards={cards}
+                selectedCards={selectedCards}
+                onCardClick={handleCardClick}
+              />
+            </div>
+          </main>
 
-      <div className="fixed bottom-0 left-0 w-full z-40">
-        <GameControls
-          currentCombo={currentCombo}
-          selectedCards={selectedCards}
-          gameResult={gameResult}
-          showResult={showResult}
-          onNewGame={fetchRandomCards}
-          onCheckAnswer={validateSelection}
-          streak={streak}
-        />
-      </div>
+          <div className="fixed bottom-0 left-0 w-full z-40">
+            <GameControls
+              currentCombo={currentCombo}
+              selectedCards={selectedCards}
+              gameResult={gameResult}
+              showResult={showResult}
+              onNewGame={fetchRandomCards}
+              onCheckAnswer={validateSelection}
+              streak={streak}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }
