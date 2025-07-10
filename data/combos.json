@@ -159,6 +159,134 @@
         "Ad Nauseam",
         "Angel's Grace"
       ]
+    },
+    {
+      "name": "Demonic Consultation + Thassa's Oracle",
+      "description": "Exile your library and win the game",
+      "cards": [
+        "Demonic Consultation",
+        "Thassa's Oracle"
+      ]
+    },
+    {
+      "name": "Exquisite Blood + Sanguine Bond",
+      "description": "Infinite lifegain and lifeloss",
+      "cards": [
+        "Exquisite Blood",
+        "Sanguine Bond"
+      ]
+    },
+    {
+      "name": "Tainted Pact + Thassa's Oracle",
+      "description": "Exile your library and win the game",
+      "cards": [
+        "Tainted Pact",
+        "Thassa's Oracle"
+      ]
+    },
+    {
+      "name": "Dramatic Reversal + Isochron Scepter",
+      "description": "Infinite mana with mana rocks",
+      "cards": [
+        "Dramatic Reversal",
+        "Isochron Scepter"
+      ]
+    },
+    {
+      "name": "Dualcaster Mage + Twinflame",
+      "description": "Infinite ETB triggers",
+      "cards": [
+        "Dualcaster Mage",
+        "Twinflame"
+      ]
+    },
+    {
+      "name": "Niv-Mizzet, Parun + Curiosity",
+      "description": "Infinite card draw and damage",
+      "cards": [
+        "Niv-Mizzet, Parun",
+        "Curiosity"
+      ]
+    },
+    {
+      "name": "Gravecrawler + Phyrexian Altar",
+      "description": "Infinite death triggers",
+      "cards": [
+        "Gravecrawler",
+        "Phyrexian Altar"
+      ]
+    },
+    {
+      "name": "Basalt Monolith + Forsaken Monument",
+      "description": "Infinite colorless mana",
+      "cards": [
+        "Basalt Monolith",
+        "Forsaken Monument"
+      ]
+    },
+    {
+      "name": "Bloodchief Ascension + Mindcrank",
+      "description": "Infinite mill and lifeloss",
+      "cards": [
+        "Bloodchief Ascension",
+        "Mindcrank"
+      ]
+    },
+    {
+      "name": "Rings of Brighthearth + Basalt Monolith",
+      "description": "Infinite colorless mana",
+      "cards": [
+        "Rings of Brighthearth",
+        "Basalt Monolith"
+      ]
+    },
+    {
+      "name": "Heliod, Sun-Crowned + Walking Ballista",
+      "description": "Infinite damage and lifegain",
+      "cards": [
+        "Heliod, Sun-Crowned",
+        "Walking Ballista"
+      ]
+    },
+    {
+      "name": "Kiki-Jiki, Mirror Breaker + Felidar Guardian",
+      "description": "Infinite creature tokens with haste",
+      "cards": [
+        "Kiki-Jiki, Mirror Breaker",
+        "Felidar Guardian"
+      ]
+    },
+    {
+      "name": "Abdel Adrian, Gorion's Ward + Animate Dead",
+      "description": "Infinite blinking and creature tokens",
+      "cards": [
+        "Abdel Adrian, Gorion's Ward",
+        "Animate Dead"
+      ]
+    },
+    {
+      "name": "Aggravated Assault + Bear Umbra",
+      "description": "Infinite combat phases",
+      "cards": [
+        "Aggravated Assault",
+        "Bear Umbra"
+      ]
+    },
+    {
+      "name": "Food Chain + Misthollow Griffin",
+      "description": "Infinite colored mana and ETB triggers",
+      "cards": [
+        "Food Chain",
+        "Misthollow Griffin"
+      ]
+    },
+    {
+      "name": "Niv-Mizzet, the Firemind + Ophidian Eye",
+      "description": "Infinite card draw and damage",
+      "cards": [
+        "Niv-Mizzet, the Firemind",
+        "Ophidian Eye"
+      ]
     }
   ]
 } 

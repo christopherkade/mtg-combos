@@ -19,6 +19,22 @@ export default function Home() {
   const [gameResult, setGameResult] = useState<'win' | 'lose' | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [showCardAnimation, setShowCardAnimation] = useState(false);
+  const [streak, setStreak] = useState(0);
+  const [congrats, setCongrats] = useState<string | null>(null);
+
+  const congratsMessages = [
+    "Great job!",
+    "Combo Master!",
+    "Well done, Planeswalker!",
+    "You nailed it!",
+    "Well played!",
+    "Impressive!",
+    "That's a win!",
+    "You found the combo!",
+    "Victory!",
+    "Excellent!",
+    "You got it!"
+  ];
 
   const fetchRandomCards = async () => {
     try {
@@ -105,7 +121,16 @@ export default function Home() {
     setShowResult(true);
 
     if (isCorrect) {
-      setShowCardAnimation(true);
+      setStreak((prev) => prev + 1);
+      // Show congrats overlay
+      const msg = congratsMessages[Math.floor(Math.random() * congratsMessages.length)];
+      setCongrats(msg);
+      setTimeout(() => {
+        setCongrats(null);
+        setShowCardAnimation(true);
+      }, 1700);
+    } else {
+      setStreak(0);
     }
   };
 
@@ -129,19 +154,26 @@ export default function Home() {
 
   return (
     <div className="h-screen bg-gradient-to-br from-stone-800 via-stone-700 to-stone-900 flex flex-col">
+      {congrats && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
+          <div className="bg-yellow-900/90 border-4 border-yellow-400 rounded-2xl px-12 py-8 shadow-2xl text-yellow-100 font-bold text-3xl font-serif text-center animate-fade-in">
+            {congrats}
+          </div>
+        </div>
+      )}
       {showCardAnimation && (
         <CardAnimation 
           onAnimationComplete={handleAnimationComplete}
         />
       )}
       <main className="flex-1 p-4 md:p-6 overflow-hidden">
-        <div className="h-full w-full mx-auto">
+        <div className="w-full h-full mx-auto">
           <CardGrid
             cards={cards}
             selectedCards={selectedCards}
             onCardClick={handleCardClick}
           />
-        </div>
+        </div>        
       </main>
 
       <footer className="flex-shrink-0 p-4 md:p-6">
@@ -153,6 +185,7 @@ export default function Home() {
           onNewGame={fetchRandomCards}
           onCheckAnswer={validateSelection}
           onPlayAgain={resetGame}
+          streak={streak}
         />
       </footer>
     </div>

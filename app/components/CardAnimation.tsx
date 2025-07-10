@@ -27,7 +27,7 @@ export default function CardAnimation({ onAnimationComplete }: CardAnimationProp
       cards.forEach((card, index) => {
         card.style.position = 'fixed';
         card.style.left = `${centerX + (index * 2)}px`;
-        card.style.top = `${centerY + (index * 2)}px`;
+        card.style.top = `${centerY - 100}px`;
         card.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
         card.style.zIndex = (index + 100).toString();
         card.style.transition = 'all 1s ease-in-out';
@@ -40,7 +40,7 @@ export default function CardAnimation({ onAnimationComplete }: CardAnimationProp
       const moveTimer = setTimeout(() => {
         cards.forEach((card, index) => {
           card.style.left = `${window.innerWidth + 200}px`;
-          card.style.top = `${centerY + (index * 5)}px`;
+          card.style.top = `${centerY}px`; // No vertical offset
           card.style.transform = 'rotate(45deg)';
         });
         
