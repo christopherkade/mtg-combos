@@ -43,7 +43,7 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
               className="mb-6 transition-all duration-300 cursor-pointer"
             >
               <div
-                className={`w-32 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:-translate-y-4 hover:-translate-x-2 ${
+                className={`w-48 rounded-lg shadow-lg transition-all duration-300 md:hover:scale-105 md:hover:-translate-y-4 md:hover:-translate-x-2 ${
                   isSelected ? 'border-2 border-yellow-400' : ''
                 }`}
                 style={{ aspectRatio: '2.5/3.5' }}
@@ -55,7 +55,7 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
                       alt={cardName}
                       fill
                       className="object-contain rounded-xl"
-                      sizes="128px"
+                      sizes="192px"
                     />
                   </div>
                 ) : (
@@ -70,7 +70,7 @@ export default function CardGrid({ cards, selectedCards, onCardClick }: CardGrid
       </div>
 
       {/* Desktop: Horizontal layout */}
-      <div ref={desktopContainerRef} className="hidden md:flex relative items-end justify-center w-full" style={{ height: '400px' }}>
+      <div ref={desktopContainerRef} className="hidden md:flex relative items-end justify-center w-full" style={{ height: '250px' }}>
         {cards.map((card, index) => {
           const imageUrl = getCardImage(card);
           const cardName = getCardName(card);

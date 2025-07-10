@@ -53,9 +53,9 @@ export default function GameControls({
   }, [dropdownOpen]);
 
   return (
-    <div className="max-w-7xl mx-auto text-center">
+    <div className="w-full text-center px-2">
       {currentCombo && (
-        <div className="mb-4 p-4 bg-stone-800/70 rounded-lg border-2 border-yellow-600 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="p-4 pb-6 bg-stone-800/70 md:bg-transparent border-t-6 border-slate-950 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           {/* Buttons on the left */}
           <div className="flex flex-row gap-2 md:gap-4 items-center justify-center md:justify-start mb-4 md:mb-0">
             <button
@@ -81,7 +81,7 @@ export default function GameControls({
           </div>
           {/* Streak and settings on the right */}
           <div className="flex items-center justify-center md:justify-end relative gap-2" ref={dropdownRef}>
-            <span className="bg-yellow-900/80 border-2 border-yellow-400 rounded-xl px-6 py-2 shadow text-yellow-100 font-bold text-base font-serif whitespace-nowrap">
+            <span className="bg-yellow-900/80 rounded-xl px-6 py-2 shadow text-yellow-100 font-bold text-base font-serif whitespace-nowrap">
               Winning Streak: {streak}
             </span>
             {/* Settings icon */}

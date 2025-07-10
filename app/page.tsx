@@ -147,7 +147,7 @@ export default function Home() {
   }
 
   return (
-    <div className="h-screen bg-gradient-to-br from-stone-800 via-stone-700 to-stone-900 flex flex-col">
+    <div className="h-screen bg-gradient-to-br from-stone-800 via-stone-700 to-stone-900 flex flex-col border-8 border-slate-950 rounded-xl">
       {congrats && (
         <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
           <div className="bg-yellow-900/90 border-4 border-yellow-400 rounded-2xl px-12 py-8 shadow-2xl text-yellow-100 font-bold text-3xl font-serif text-center animate-fade-in">
@@ -170,7 +170,7 @@ export default function Home() {
         </div>        
       </main>
 
-      <footer className="flex-shrink-0 p-4 md:p-6">
+      <div className="fixed bottom-0 left-0 w-full z-40">
         <GameControls
           currentCombo={currentCombo}
           selectedCards={selectedCards}
@@ -180,7 +180,7 @@ export default function Home() {
           onCheckAnswer={validateSelection}
           streak={streak}
         />
-      </footer>
+      </div>
     </div>
   );
 }
