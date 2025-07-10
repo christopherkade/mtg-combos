@@ -67,7 +67,7 @@ export default function GameControls({
               onClick={onCheckAnswer}
               className={`${
                 selectedCards.size < 1 ? "cursor-not-allowed" : "cursor-pointer"
-              } font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-colors duration-200 shadow-lg text-sm md:text-base font-serif border w-full md:w-min ${
+              } font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-colors duration-200 shadow-lg text-sm md:text-base font-serif border w-full md:w-fit ${
                 buttonLabel === "wrong"
                   ? "bg-red-700 text-stone-50 animate-shake"
                   : "bg-green-700 hover:bg-green-600 text-green-100 text-stone-50 hover:shadow-xl"
