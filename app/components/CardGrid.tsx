@@ -124,10 +124,7 @@ export default function CardGrid({
                     }}
                   >
                     {/* Card back */}
-                    <div
-                      className="card-flip-front absolute top-0 left-0 w-full h-full"
-                      style={{ zIndex: flipped[card.id] ? "0" : "100" }}
-                    >
+                    <div className="card-flip-front absolute top-0 left-0 w-full h-full">
                       <CardBack />
                     </div>
                     {/* Card front */}
@@ -141,9 +138,7 @@ export default function CardGrid({
                             src={imageUrl}
                             alt={cardName}
                             fill
-                            className={`object-contain rounded-xl transition-opacity duration-300 ${
-                              flipped[card.id] ? "opacity-100" : "opacity-0"
-                            }`}
+                            className="object-contain rounded-xl"
                             sizes="192px"
                             onLoad={() =>
                               setLoaded((l) => ({ ...l, [card.id]: true }))
@@ -223,10 +218,7 @@ export default function CardGrid({
                     }}
                   >
                     {/* Card back */}
-                    <div
-                      className="card-flip-front absolute top-0 left-0 w-full h-full"
-                      style={{ width: "100%", height: "100%" }}
-                    >
+                    <div className="card-flip-front absolute top-0 left-0 w-full h-full">
                       <CardBack />
                     </div>
                     {/* Card front */}
@@ -240,9 +232,7 @@ export default function CardGrid({
                             src={imageUrl}
                             alt={cardName}
                             fill
-                            className={`object-contain rounded-xl transition-opacity duration-300 ${
-                              flipped[card.id] ? "opacity-100" : "opacity-0"
-                            }`}
+                            className="object-contain rounded-xl"
                             sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
                             onLoad={() =>
                               setLoaded((l) => ({ ...l, [card.id]: true }))
