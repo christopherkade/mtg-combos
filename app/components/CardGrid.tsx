@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 import { Card } from "../types";
 import { getCardImage, getCardName } from "../utils/cardUtils";
+import cardBackWebp from "../../public/mtg-back.webp";
 
 interface CardGridProps {
   cards: Card[];
@@ -15,7 +16,7 @@ interface CardGridProps {
 function CardBack() {
   return (
     <Image
-      src="/mtg-back.webp"
+      src={cardBackWebp}
       alt="Magic card back"
       fill
       className="object-contain w-full h-full rounded-xl"
@@ -68,14 +69,6 @@ export default function CardGrid({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loaded, readyToFlip, cards]);
-
-  // Card flip CSS
-  // Add this to your global CSS if not present:
-  // .card-flip { perspective: 1000px; }
-  // .card-flip-inner { transition: transform 0.6s; transform-style: preserve-3d; }
-  // .card-flip.flipped .card-flip-inner { transform: rotateY(180deg); }
-  // .card-flip-front, .card-flip-back { backface-visibility: hidden; position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
-  // .card-flip-back { transform: rotateY(180deg); }
 
   return (
     <div className="flex justify-center items-center h-full pb-50 md:pb-8">

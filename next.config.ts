@@ -4,16 +4,16 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'cards.scryfall.io',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "cards.scryfall.io",
+        port: "",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'api.scryfall.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "api.scryfall.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
