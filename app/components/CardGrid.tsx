@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 import { Card } from "../types";
 import { getCardImage, getCardName } from "../utils/cardUtils";
-import cardBackWebp from "../../public/mtg-back.webp";
+import cardBackPng from "../../public/card_back.png";
 
 interface CardGridProps {
   cards: Card[];
@@ -16,7 +16,7 @@ interface CardGridProps {
 function CardBack() {
   return (
     <Image
-      src={cardBackWebp}
+      src={cardBackPng}
       alt="Magic card back"
       fill
       className="object-contain w-full h-full rounded-xl"
