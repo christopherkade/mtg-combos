@@ -3,282 +3,467 @@
     {
       "name": "Kiki-Jiki + Pestermite",
       "description": "Infinite creature tokens",
-      "cards": [
-        "Kiki-Jiki, Mirror Breaker",
-        "Pestermite"
-      ]
+      "cards": ["Kiki-Jiki, Mirror Breaker", "Pestermite"]
     },
     {
       "name": "Splinter Twin + Deceiver Exarch",
       "description": "Infinite creature tokens",
-      "cards": [
-        "Splinter Twin",
-        "Deceiver Exarch"
-      ]
+      "cards": ["Splinter Twin", "Deceiver Exarch"]
     },
     {
       "name": "Flash + Protean Hulk",
       "description": "Instant speed creature tutoring",
-      "cards": [
-        "Flash",
-        "Protean Hulk"
-      ]
+      "cards": ["Flash", "Protean Hulk"]
     },
     {
       "name": "Thopter Foundry + Sword of the Meek",
       "description": "Infinite life and tokens",
-      "cards": [
-        "Thopter Foundry",
-        "Sword of the Meek"
-      ]
+      "cards": ["Thopter Foundry", "Sword of the Meek"]
     },
     {
       "name": "Time Vault + Voltaic Key",
       "description": "Infinite turns",
-      "cards": [
-        "Time Vault",
-        "Voltaic Key"
-      ]
+      "cards": ["Time Vault", "Voltaic Key"]
     },
     {
       "name": "Dark Depths + Thespian's Stage",
       "description": "20/20 flying indestructible token",
-      "cards": [
-        "Dark Depths",
-        "Thespian's Stage"
-      ]
+      "cards": ["Dark Depths", "Thespian's Stage"]
     },
     {
       "name": "Painter's Servant + Grindstone",
       "description": "Mill opponent's entire deck",
-      "cards": [
-        "Painter's Servant",
-        "Grindstone"
-      ]
+      "cards": ["Painter's Servant", "Grindstone"]
     },
     {
       "name": "Helm of Obedience + Leyline of the Void",
       "description": "Mill opponent's entire deck",
-      "cards": [
-        "Helm of Obedience",
-        "Leyline of the Void"
-      ]
+      "cards": ["Helm of Obedience", "Leyline of the Void"]
     },
     {
       "name": "Squirrel Nest + Earthcraft",
       "description": "Infinite squirrel tokens",
-      "cards": [
-        "Squirrel Nest",
-        "Earthcraft"
-      ]
-    },    
+      "cards": ["Squirrel Nest", "Earthcraft"]
+    },
     {
       "name": "Goblin Recruiter + Goblin Ringleader",
       "description": "Tutor and draw goblins",
-      "cards": [
-        "Goblin Recruiter",
-        "Goblin Ringleader"
-      ]
+      "cards": ["Goblin Recruiter", "Goblin Ringleader"]
     },
     {
       "name": "Survival of the Fittest + Squee, Goblin Nabob",
       "description": "Tutor any creature",
-      "cards": [
-        "Survival of the Fittest",
-        "Squee, Goblin Nabob"
-      ]
+      "cards": ["Survival of the Fittest", "Squee, Goblin Nabob"]
     },
     {
       "name": "Hermit Druid + Dread Return",
       "description": "Mill library and reanimate",
-      "cards": [
-        "Hermit Druid",
-        "Dread Return"
-      ]
+      "cards": ["Hermit Druid", "Dread Return"]
     },
     {
       "name": "Cephalid Illusionist + Nomads en-Kor",
       "description": "Mill entire library",
-      "cards": [
-        "Cephalid Illusionist",
-        "Nomads en-Kor"
-      ]
+      "cards": ["Cephalid Illusionist", "Nomads en-Kor"]
     },
     {
       "name": "Aluren + Cavern Harpy",
       "description": "Infinite creature bouncing",
-      "cards": [
-        "Aluren",
-        "Cavern Harpy"
-      ]
+      "cards": ["Aluren", "Cavern Harpy"]
     },
     {
       "name": "Food Chain + Misthollow Griffin",
       "description": "Infinite mana and cast from exile",
-      "cards": [
-        "Food Chain",
-        "Misthollow Griffin"
-      ]
+      "cards": ["Food Chain", "Misthollow Griffin"]
     },
     {
       "name": "Isochron Scepter + Dramatic Reversal",
       "description": "Infinite mana",
-      "cards": [
-        "Isochron Scepter",
-        "Dramatic Reversal"
-      ]
+      "cards": ["Isochron Scepter", "Dramatic Reversal"]
     },
     {
       "name": "Paradox Engine + Mana Rocks",
       "description": "Infinite mana and untaps",
-      "cards": [
-        "Paradox Engine",
-        "Sol Ring"
-      ]
+      "cards": ["Paradox Engine", "Sol Ring"]
     },
     {
       "name": "Aetherflux Reservoir + Storm",
       "description": "Gain life and deal damage",
-      "cards": [
-        "Aetherflux Reservoir",
-        "Grapeshot"
-      ]
+      "cards": ["Aetherflux Reservoir", "Grapeshot"]
     },
     {
       "name": "Ad Nauseam + Angel's Grace",
       "description": "Draw entire deck safely",
-      "cards": [
-        "Ad Nauseam",
-        "Angel's Grace"
-      ]
+      "cards": ["Ad Nauseam", "Angel's Grace"]
     },
     {
       "name": "Demonic Consultation + Thassa's Oracle",
       "description": "Exile your library and win the game",
-      "cards": [
-        "Demonic Consultation",
-        "Thassa's Oracle"
-      ]
+      "cards": ["Demonic Consultation", "Thassa's Oracle"]
     },
     {
       "name": "Exquisite Blood + Sanguine Bond",
       "description": "Infinite lifegain and lifeloss",
-      "cards": [
-        "Exquisite Blood",
-        "Sanguine Bond"
-      ]
+      "cards": ["Exquisite Blood", "Sanguine Bond"]
     },
     {
       "name": "Tainted Pact + Thassa's Oracle",
       "description": "Exile your library and win the game",
-      "cards": [
-        "Tainted Pact",
-        "Thassa's Oracle"
-      ]
+      "cards": ["Tainted Pact", "Thassa's Oracle"]
     },
     {
       "name": "Dramatic Reversal + Isochron Scepter",
       "description": "Infinite mana with mana rocks",
-      "cards": [
-        "Dramatic Reversal",
-        "Isochron Scepter"
-      ]
+      "cards": ["Dramatic Reversal", "Isochron Scepter"]
     },
     {
       "name": "Dualcaster Mage + Twinflame",
       "description": "Infinite ETB triggers",
-      "cards": [
-        "Dualcaster Mage",
-        "Twinflame"
-      ]
+      "cards": ["Dualcaster Mage", "Twinflame"]
     },
     {
       "name": "Niv-Mizzet, Parun + Curiosity",
       "description": "Infinite card draw and damage",
-      "cards": [
-        "Niv-Mizzet, Parun",
-        "Curiosity"
-      ]
+      "cards": ["Niv-Mizzet, Parun", "Curiosity"]
     },
     {
       "name": "Gravecrawler + Phyrexian Altar",
       "description": "Infinite death triggers",
-      "cards": [
-        "Gravecrawler",
-        "Phyrexian Altar"
-      ]
+      "cards": ["Gravecrawler", "Phyrexian Altar"]
     },
     {
       "name": "Basalt Monolith + Forsaken Monument",
       "description": "Infinite colorless mana",
-      "cards": [
-        "Basalt Monolith",
-        "Forsaken Monument"
-      ]
+      "cards": ["Basalt Monolith", "Forsaken Monument"]
     },
     {
       "name": "Bloodchief Ascension + Mindcrank",
       "description": "Infinite mill and lifeloss",
-      "cards": [
-        "Bloodchief Ascension",
-        "Mindcrank"
-      ]
+      "cards": ["Bloodchief Ascension", "Mindcrank"]
     },
     {
       "name": "Rings of Brighthearth + Basalt Monolith",
       "description": "Infinite colorless mana",
-      "cards": [
-        "Rings of Brighthearth",
-        "Basalt Monolith"
-      ]
+      "cards": ["Rings of Brighthearth", "Basalt Monolith"]
     },
     {
       "name": "Heliod, Sun-Crowned + Walking Ballista",
       "description": "Infinite damage and lifegain",
-      "cards": [
-        "Heliod, Sun-Crowned",
-        "Walking Ballista"
-      ]
+      "cards": ["Heliod, Sun-Crowned", "Walking Ballista"]
     },
     {
       "name": "Kiki-Jiki, Mirror Breaker + Felidar Guardian",
       "description": "Infinite creature tokens with haste",
-      "cards": [
-        "Kiki-Jiki, Mirror Breaker",
-        "Felidar Guardian"
-      ]
+      "cards": ["Kiki-Jiki, Mirror Breaker", "Felidar Guardian"]
     },
     {
       "name": "Abdel Adrian, Gorion's Ward + Animate Dead",
       "description": "Infinite blinking and creature tokens",
-      "cards": [
-        "Abdel Adrian, Gorion's Ward",
-        "Animate Dead"
-      ]
+      "cards": ["Abdel Adrian, Gorion's Ward", "Animate Dead"]
     },
     {
       "name": "Aggravated Assault + Bear Umbra",
       "description": "Infinite combat phases",
-      "cards": [
-        "Aggravated Assault",
-        "Bear Umbra"
-      ]
+      "cards": ["Aggravated Assault", "Bear Umbra"]
     },
     {
       "name": "Food Chain + Misthollow Griffin",
       "description": "Infinite colored mana and ETB triggers",
-      "cards": [
-        "Food Chain",
-        "Misthollow Griffin"
-      ]
+      "cards": ["Food Chain", "Misthollow Griffin"]
     },
     {
       "name": "Niv-Mizzet, the Firemind + Ophidian Eye",
       "description": "Infinite card draw and damage",
-      "cards": [
-        "Niv-Mizzet, the Firemind",
-        "Ophidian Eye"
-      ]
+      "cards": ["Niv-Mizzet, the Firemind", "Ophidian Eye"]
+    },
+    {
+      "name": "Chatterfang, Squirrel General + Pitiless Plunderer",
+      "description": "Infinite colored mana and infinite death triggers",
+      "cards": ["Chatterfang, Squirrel General", "Pitiless Plunderer"]
+    },
+    {
+      "name": "Exquisite Blood + Marauding Blight-Priest",
+      "description": "Infinite lifegain and lifeloss",
+      "cards": ["Exquisite Blood", "Marauding Blight-Priest"]
+    },
+    {
+      "name": "Kinnan, Bonder Prodigy + Basalt Monolith",
+      "description": "Infinite colorless mana",
+      "cards": ["Kinnan, Bonder Prodigy", "Basalt Monolith"]
+    },
+    {
+      "name": "Maddening Cacophony + Bruvac the Grandiloquent",
+      "description": "Infinite mill",
+      "cards": ["Maddening Cacophony", "Bruvac the Grandiloquent"]
+    },
+    {
+      "name": "Felidar Guardian + Restoration Angel",
+      "description": "Infinite ETB and LTB triggers",
+      "cards": ["Felidar Guardian", "Restoration Angel"]
+    },
+    {
+      "name": "Peregrine Drake + Deadeye Navigator",
+      "description": "Infinite blinking and ETB triggers",
+      "cards": ["Peregrine Drake", "Deadeye Navigator"]
+    },
+    {
+      "name": "Dualcaster Mage + Molten Duplication",
+      "description": "Infinite ETB and magecraft triggers",
+      "cards": ["Dualcaster Mage", "Molten Duplication"]
+    },
+    {
+      "name": "Exquisite Blood + Enduring Tenacity",
+      "description": "Infinite lifegain and lifeloss",
+      "cards": ["Exquisite Blood", "Enduring Tenacity"]
+    },
+    {
+      "name": "Niv-Mizzet, Parun + Ophidian Eye",
+      "description": "Infinite card draw and damage",
+      "cards": ["Niv-Mizzet, Parun", "Ophidian Eye"]
+    },
+    {
+      "name": "Bloodthirsty Conqueror + Sanguine Bond",
+      "description": "Infinite lifegain and lifeloss",
+      "cards": ["Bloodthirsty Conqueror", "Sanguine Bond"]
+    },
+    {
+      "name": "Kiki-Jiki, Mirror Breaker + Helm of the Host",
+      "description": "Infinite death triggers and ETB triggers",
+      "cards": ["Kiki-Jiki, Mirror Breaker", "Helm of the Host"]
+    },
+    {
+      "name": "Neheb, the Eternal + Aggravated Assault",
+      "description": "Infinite combat phases and infinite red mana",
+      "cards": ["Neheb, the Eternal", "Aggravated Assault"]
+    },
+    {
+      "name": "Cut Your Losses + Fraying Sanity",
+      "description": "Infinite mill for target player",
+      "cards": ["Cut Your Losses", "Fraying Sanity"]
+    },
+    {
+      "name": "Aetherflux Reservoir + Exquisite Blood",
+      "description": "Infinite damage and infinite lifegain triggers",
+      "cards": ["Aetherflux Reservoir", "Exquisite Blood"]
+    },
+    {
+      "name": "Sheoldred, the Apocalypse + Peer into the Abyss",
+      "description": "Near-infinite card draw and draw triggers for target opponent",
+      "cards": ["Sheoldred, the Apocalypse", "Peer into the Abyss"]
+    },
+    {
+      "name": "Orcish Bowmasters + Peer into the Abyss",
+      "description": "Near-infinite +1/+1 counters on Army and card draw for target opponent",
+      "cards": ["Orcish Bowmasters", "Peer into the Abyss"]
+    },
+    {
+      "name": "Peer into the Abyss + Underworld Dreams",
+      "description": "Kill an opponent with draw triggers",
+      "cards": ["Peer into the Abyss", "Underworld Dreams"]
+    },
+    {
+      "name": "Vraska, Betrayal's Sting + Vorinclex, Monstrous Raider",
+      "description": "Target opponent loses the game",
+      "cards": ["Vraska, Betrayal's Sting", "Vorinclex, Monstrous Raider"]
+    },
+    {
+      "name": "Aurelia, the Warleader + Helm of the Host",
+      "description": "Infinite combat phases and infinite creature tokens with haste",
+      "cards": ["Aurelia, the Warleader", "Helm of the Host"]
+    },
+    {
+      "name": "Psychosis Crawler + Peer into the Abyss",
+      "description": "Near-infinite lifeloss and card draw",
+      "cards": ["Psychosis Crawler", "Peer into the Abyss"]
+    },
+    {
+      "name": "Jeska's Will + Reiterate",
+      "description": "Infinite magecraft triggers, red mana, and storm count",
+      "cards": ["Jeska's Will", "Reiterate"]
+    },
+    {
+      "name": "Polyraptor + Marauding Raptor",
+      "description": "Draw the game or create infinite creature tokens",
+      "cards": ["Polyraptor", "Marauding Raptor"]
+    },
+    {
+      "name": "Dragon Tempest + Ancient Gold Dragon",
+      "description": "Near-infinite damage",
+      "cards": ["Dragon Tempest", "Ancient Gold Dragon"]
+    },
+    {
+      "name": "Mana Geyser + Reiterate",
+      "description": "Infinite magecraft triggers, red mana, and storm count",
+      "cards": ["Mana Geyser", "Reiterate"]
+    },
+    {
+      "name": "Niv-Mizzet, Visionary + Niv-Mizzet, Parun",
+      "description": "Near-infinite damage, card draw, and draw triggers",
+      "cards": ["Niv-Mizzet, Visionary", "Niv-Mizzet, Parun"]
+    },
+    {
+      "name": "Teferi, Temporal Archmage + The Chain Veil",
+      "description": "Infinite card draw and colored mana",
+      "cards": ["Teferi, Temporal Archmage", "The Chain Veil"]
+    },
+    {
+      "name": "Approach of the Second Sun + Mystical Tutor",
+      "description": "Win the game",
+      "cards": ["Approach of the Second Sun", "Mystical Tutor"]
+    },
+    {
+      "name": "Old Gnawbone + Hellkite Charger",
+      "description": "Infinite colored mana and combat damage",
+      "cards": ["Old Gnawbone", "Hellkite Charger"]
+    },
+    {
+      "name": "Approach of the Second Sun + Windfall",
+      "description": "Win the game",
+      "cards": ["Approach of the Second Sun", "Windfall"]
+    },
+    {
+      "name": "The World Tree + Maskwood Nexus",
+      "description": "Put all creature cards from your library onto the battlefield",
+      "cards": ["The World Tree", "Maskwood Nexus"]
+    },
+    {
+      "name": "Aggravated Assault + Old Gnawbone",
+      "description": "Infinite colored mana, combat phases, and Treasure tokens",
+      "cards": ["Aggravated Assault", "Old Gnawbone"]
+    },
+    {
+      "name": "Ob Nixilis, the Hate-Twisted + Peer into the Abyss",
+      "description": "Target player loses the game",
+      "cards": ["Ob Nixilis, the Hate-Twisted", "Peer into the Abyss"]
+    },
+    {
+      "name": "Beacon of Immortality + Sanguine Bond",
+      "description": "Target opponent loses the game",
+      "cards": ["Beacon of Immortality", "Sanguine Bond"]
+    },
+    {
+      "name": "Brass's Bounty + Revel in Riches",
+      "description": "Win the game at the beginning of your next upkeep",
+      "cards": ["Brass's Bounty", "Revel in Riches"]
+    },
+    {
+      "name": "Cultivator Colossus + Abundance",
+      "description": "Order your library and put all land cards from your hand and library onto the battlefield",
+      "cards": ["Cultivator Colossus", "Abundance"]
+    },
+    {
+      "name": "Duskmantle Guildmage + Maddening Cacophony",
+      "description": "Each opponent loses the game, near-infinite lifeloss and mill",
+      "cards": ["Duskmantle Guildmage", "Maddening Cacophony"]
+    },
+    {
+      "name": "Fleet Swallower + Bruvac the Grandiloquent",
+      "description": "Infinite mill for target opponent",
+      "cards": ["Fleet Swallower", "Bruvac the Grandiloquent"]
+    },
+    {
+      "name": "Maze's End + Reshape the Earth",
+      "description": "Put all gates onto the battlefield and win the game",
+      "cards": ["Maze's End", "Reshape the Earth"]
+    },
+    {
+      "name": "Solemnity + Decree of Silence",
+      "description": "Counter all spells cast by your opponents",
+      "cards": ["Solemnity", "Decree of Silence"]
+    },
+    {
+      "name": "Grievous Wound + Wound Reflection",
+      "description": "Target opponent loses the game, infinite lifeloss for target opponent",
+      "cards": ["Grievous Wound", "Wound Reflection"]
+    },
+    {
+      "name": "Approach of the Second Sun + Personal Tutor",
+      "description": "Win the game",
+      "cards": ["Approach of the Second Sun", "Personal Tutor"]
+    },
+    {
+      "name": "Avacyn, Angel of Hope + Worldslayer",
+      "description": "Destroy all permanents opponents control each turn",
+      "cards": ["Avacyn, Angel of Hope", "Worldslayer"]
+    },
+    {
+      "name": "Approach of the Second Sun + Scroll Rack",
+      "description": "Win the game",
+      "cards": ["Approach of the Second Sun", "Scroll Rack"]
+    },
+    {
+      "name": "Tivit, Seller of Secrets + Deadeye Navigator",
+      "description": "Infinite colored mana if your opponent allows it, infinite ETB",
+      "cards": ["Tivit, Seller of Secrets", "Deadeye Navigator"]
+    },
+    {
+      "name": "Gisela, Blade of Goldnight + Heartless Hidetsugu",
+      "description": "Each opponent loses the game, near-infinite damage",
+      "cards": ["Gisela, Blade of Goldnight", "Heartless Hidetsugu"]
+    },
+    {
+      "name": "Bloodthirsty Conqueror + Defiant Bloodlord",
+      "description": "Infinite lifegain, lifeloss, and triggers",
+      "cards": ["Bloodthirsty Conqueror", "Defiant Bloodlord"]
+    },
+    {
+      "name": "Hellkite Charger + Bear Umbra",
+      "description": "Infinite combat phases",
+      "cards": ["Hellkite Charger", "Bear Umbra"]
+    },
+    {
+      "name": "Avacyn, Angel of Hope + Nevinyrral's Disk",
+      "description": "Destroy all creatures, artifacts, and enchantments opponents control on each of your turns",
+      "cards": ["Avacyn, Angel of Hope", "Nevinyrral's Disk"]
+    },
+    {
+      "name": "Twinning Staff + Dramatic Reversal",
+      "description": "Infinite magecraft triggers, mana, and tap triggers",
+      "cards": ["Twinning Staff", "Dramatic Reversal"]
+    },
+    {
+      "name": "Terror of the Peaks + Rite of Replication",
+      "description": "Near-infinite damage",
+      "cards": ["Terror of the Peaks", "Rite of Replication"]
+    },
+    {
+      "name": "Zedruu the Greathearted + Transcendence",
+      "description": "Each opponent with 20 or more life loses the game",
+      "cards": ["Zedruu the Greathearted", "Transcendence"]
+    },
+    {
+      "name": "Fraying Omnipotence + Wound Reflection",
+      "description": "Each opponent loses the game, near-infinite lifeloss",
+      "cards": ["Fraying Omnipotence", "Wound Reflection"]
+    },
+    {
+      "name": "Riverchurn Monument + Cut Your Losses",
+      "description": "Infinite self-mill and mill for up to two target players",
+      "cards": ["Riverchurn Monument", "Cut Your Losses"]
+    },
+    {
+      "name": "Bootleggers' Stash + Mechanized Production",
+      "description": "Win the game at the beginning of your next upkeep",
+      "cards": ["Bootleggers' Stash", "Mechanized Production"]
+    },
+    {
+      "name": "Peer into the Abyss + Psychic Corrosion",
+      "description": "Infinite mill",
+      "cards": ["Peer into the Abyss", "Psychic Corrosion"]
+    },
+    {
+      "name": "Approach of the Second Sun + Diabolic Tutor",
+      "description": "Win the game",
+      "cards": ["Approach of the Second Sun", "Diabolic Tutor"]
+    },
+    {
+      "name": "Hellkite Charger + Sword of Feast and Famine",
+      "description": "Infinite combat damage and combat phases",
+      "cards": ["Hellkite Charger", "Sword of Feast and Famine"]
+    },
+    {
+      "name": "Naru Meha, Master Wizard + Illusionist's Stratagem",
+      "description": "Infinite card draw and draw triggers",
+      "cards": ["Naru Meha, Master Wizard", "Illusionist's Stratagem"]
     }
   ]
-} 
+}
