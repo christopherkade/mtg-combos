@@ -19,4 +19,4 @@ export interface Combo {
   name: string;
   description: string;
   cards: string[];
-} 
+}

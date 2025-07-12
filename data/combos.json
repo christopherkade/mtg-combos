@@ -110,11 +110,7 @@
       "description": "Exile your library and win the game",
       "cards": ["Tainted Pact", "Thassa's Oracle"]
     },
-    {
-      "name": "Dramatic Reversal + Isochron Scepter",
-      "description": "Infinite mana with mana rocks",
-      "cards": ["Dramatic Reversal", "Isochron Scepter"]
-    },
+
     {
       "name": "Dualcaster Mage + Twinflame",
       "description": "Infinite ETB triggers",
@@ -165,11 +161,7 @@
       "description": "Infinite combat phases",
       "cards": ["Aggravated Assault", "Bear Umbra"]
     },
-    {
-      "name": "Food Chain + Misthollow Griffin",
-      "description": "Infinite colored mana and ETB triggers",
-      "cards": ["Food Chain", "Misthollow Griffin"]
-    },
+
     {
       "name": "Niv-Mizzet, the Firemind + Ophidian Eye",
       "description": "Infinite card draw and damage",
@@ -444,11 +436,6 @@
       "name": "Bootleggers' Stash + Mechanized Production",
       "description": "Win the game at the beginning of your next upkeep",
       "cards": ["Bootleggers' Stash", "Mechanized Production"]
-    },
-    {
-      "name": "Peer into the Abyss + Psychic Corrosion",
-      "description": "Infinite mill",
-      "cards": ["Peer into the Abyss", "Psychic Corrosion"]
     },
     {
       "name": "Approach of the Second Sun + Diabolic Tutor",
