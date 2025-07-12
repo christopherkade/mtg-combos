@@ -62,9 +62,9 @@ export default function GameControls({
   }, [dropdownOpen]);
 
   return (
-    <div className="w-full text-center px-2">
+    <div className="w-full text-center">
       {currentCombo && (
-        <div className="p-4 pb-6 bg-stone-800/70 md:bg-transparent border-t-6 border-slate-950 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="p-4 pb-6 bg-stone-900 border-y-6 border-slate-950 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           {/* Buttons on the left */}
           <div className="flex flex-row gap-2 md:gap-4 items-center justify-center md:justify-start mb-4 md:mb-0">
             <button
@@ -74,7 +74,7 @@ export default function GameControls({
               } font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-colors duration-200 shadow-lg text-sm md:text-base font-serif border w-full md:w-fit ${
                 buttonLabel === "wrong"
                   ? "bg-red-700 text-stone-50 animate-shake"
-                  : "bg-green-700 hover:bg-green-600 text-green-100 text-stone-50 hover:shadow-xl"
+                  : "bg-green-700 hover:bg-green-600 text-stone-50 hover:shadow-xl"
               }${selectedCards.size < 1 ? " opacity-50" : ""}`}
               disabled={selectedCards.size < 1}
             >

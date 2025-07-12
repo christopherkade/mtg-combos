@@ -11,6 +11,7 @@ import CardAnimation from "./components/CardAnimation";
 import LoadingSpinner from "./components/LoadingSpinner";
 import HistoryPanel from "./components/HistoryPanel";
 import HistoryButton from "./components/HistoryButton";
+import ProgressBar from "./components/ProgressBar";
 
 export default function Home() {
   const [cards, setCards] = useState<Card[]>([]);
@@ -36,6 +37,7 @@ export default function Home() {
     }>
   >([]);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [usedCombos, setUsedCombos] = useState<Set<string>>(new Set());
 
   const congratsMessages = [
     "Great job!",
@@ -62,13 +64,29 @@ export default function Home() {
       setShowResult(false);
       setShowCardAnimation(false);
 
-      // Select a random combo
+      // Select a random combo that hasn't been used yet
       const combos = combosData.combos as Combo[];
-      const randomCombo = combos[Math.floor(Math.random() * combos.length)];
-      setCurrentCombo(randomCombo);
+      const availableCombos = combos.filter(
+        (combo) => !usedCombos.has(combo.name)
+      );
+
+      let selectedCombo: Combo;
+
+      // If all combos have been used, reset the used combos set
+      if (availableCombos.length === 0) {
+        setUsedCombos(new Set());
+        selectedCombo = combos[Math.floor(Math.random() * combos.length)];
+        setUsedCombos(new Set([selectedCombo.name]));
+      } else {
+        selectedCombo =
+          availableCombos[Math.floor(Math.random() * availableCombos.length)];
+        setUsedCombos((prev) => new Set([...prev, selectedCombo.name]));
+      }
+
+      setCurrentCombo(selectedCombo);
 
       // Fetch combo cards
-      const comboCardPromises = randomCombo.cards.map((cardName) =>
+      const comboCardPromises = selectedCombo.cards.map((cardName) =>
         fetchCardByName(cardName)
       );
       const comboCards = await Promise.all(comboCardPromises);
@@ -157,6 +175,8 @@ export default function Home() {
       setCongrats(msg);
       setTimeout(() => {
         setCongrats(null);
+        // Clear card selection before starting animation
+        setSelectedCards(new Set());
         setShowCardAnimation(true);
       }, 1000);
     } else {
@@ -203,6 +223,13 @@ export default function Home() {
     fetchRandomCards();
   };
 
+  const resetGameSession = () => {
+    setStreak(0);
+    setUsedCombos(new Set());
+    setComboHistory([]);
+    fetchRandomCards();
+  };
+
   if (error) {
     return <ErrorDisplay error={error} onRetry={fetchRandomCards} />;
   }
@@ -214,8 +241,11 @@ export default function Home() {
     image_uris: { normal: "" },
   }));
 
+  const totalCombos = (combosData.combos as Combo[]).length;
+  const foundCombos = comboHistory.length;
+
   return (
-    <div className="h-screen bg-gradient-to-br from-stone-800 via-stone-700 to-stone-900 flex flex-col border-8 border-slate-950 rounded-xl">
+    <div className="h-screen flex flex-col rounded-xl">
       {initialLoading && <LoadingSpinner />}
       {congrats && (
         <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
@@ -248,16 +278,18 @@ export default function Home() {
           </div>
         </main>
 
-        <div className="fixed bottom-0 left-0 w-full z-40">
+        <ProgressBar found={foundCombos} total={totalCombos} />
+
+        <div
+          className="fixed bottom-0 left-0 w-full z-40"
+          style={{ bottom: "48px" }}
+        >
           <GameControls
             currentCombo={currentCombo}
             selectedCards={selectedCards}
             gameResult={gameResult}
             showResult={showResult}
-            onNewGame={() => {
-              setStreak(0);
-              fetchRandomCards();
-            }}
+            onNewGame={resetGameSession}
             onCheckAnswer={validateSelection}
             onUseHint={useHint}
             hintUsed={hintUsed}
