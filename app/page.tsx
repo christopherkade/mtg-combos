@@ -249,7 +249,7 @@ export default function Home() {
       {initialLoading && <LoadingSpinner />}
       {congrats && (
         <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
-          <div className="bg-yellow-900/90 border-4 border-yellow-400 rounded-2xl px-12 py-8 shadow-2xl text-yellow-100 font-bold text-3xl font-serif text-center animate-fade-in">
+          <div className="bg-yellow-900/90 border-4 border-yellow-400 rounded-2xl px-12 py-8 shadow-2xl text-yellow-100 font-bold text-3xl text-center animate-fade-in">
             {congrats}
           </div>
         </div>

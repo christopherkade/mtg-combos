@@ -35,9 +35,7 @@ export default function HistoryPanel({
         {/* Header */}
         <div className="p-4 border-b-2 border-yellow-400 bg-stone-700">
           <div className="flex items-center justify-between">
-            <h2 className="text-yellow-200 font-bold text-xl font-serif">
-              Combo History
-            </h2>
+            <h2 className="text-yellow-200 font-bold text-xl">Combo History</h2>
             <button
               onClick={onClose}
               className="text-yellow-200 hover:text-white transition-colors"
@@ -68,7 +66,7 @@ export default function HistoryPanel({
         <div className="h-full overflow-y-auto p-4 pb-25">
           {comboHistory.length === 0 ? (
             <div className="text-center text-stone-400 mt-8">
-              <p className="text-lg font-serif">No combos found yet!</p>
+              <p className="text-lg">No combos found yet!</p>
               <p className="text-sm mt-2">
                 Start playing to build your history.
               </p>
@@ -81,10 +79,10 @@ export default function HistoryPanel({
                   className="bg-stone-700 rounded-lg p-4 border border-yellow-400/30"
                 >
                   {/* Combo name and description */}
-                  <h3 className="text-yellow-200 font-bold text-lg font-serif mb-2">
+                  <h3 className="text-yellow-200 font-bold text-lg mb-2">
                     {entry.combo.name}
                   </h3>
-                  <p className="text-stone-300 text-sm mb-3 font-serif">
+                  <p className="text-stone-300 text-sm mb-3">
                     {entry.combo.description}
                   </p>
 
@@ -116,7 +114,7 @@ export default function HistoryPanel({
                               </div>
                             )}
                           </div>
-                          <p className="text-xs text-stone-300 mt-1 text-center font-serif leading-tight">
+                          <p className="text-xs text-stone-300 mt-1 text-center leading-tight">
                             {cardName}
                           </p>
                         </div>

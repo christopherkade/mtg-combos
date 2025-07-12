@@ -71,7 +71,7 @@ export default function GameControls({
               onClick={onCheckAnswer}
               className={`${
                 selectedCards.size < 1 ? "cursor-not-allowed" : "cursor-pointer"
-              } font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-colors duration-200 shadow-lg text-sm md:text-base font-serif border w-full md:w-fit ${
+              } font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-colors duration-200 shadow-lg text-sm md:text-base border w-full md:w-fit ${
                 buttonLabel === "wrong"
                   ? "bg-red-700 text-stone-50 animate-shake"
                   : "bg-green-700 hover:bg-green-600 text-stone-50 hover:shadow-xl"
@@ -83,10 +83,10 @@ export default function GameControls({
             <button
               onClick={onUseHint}
               disabled={hintUsed || loading}
-              className={`font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-colors duration-200 shadow-lg text-sm md:text-base font-serif border ${
+              className={`font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-colors duration-200 shadow-lg text-sm md:text-base border ${
                 hintUsed || loading
                   ? "bg-gray-600 text-gray-400 cursor-not-allowed opacity-50"
-                  : "bg-blue-700 hover:bg-blue-600 text-blue-100 text-stone-50 hover:shadow-xl cursor-pointer"
+                  : "bg-blue-700 hover:bg-blue-600 text-stone-50 hover:shadow-xl cursor-pointer"
               }`}
             >
               {loading ? "Loading..." : "Hint"}
@@ -94,12 +94,10 @@ export default function GameControls({
           </div>
           {/* Effect text in the center */}
           <div className="flex-1 text-center md:text-left">
-            <p className="text-yellow-200 font-semibold text-sm font-serif">
+            <p className="text-yellow-200 font-semibold text-sm">
               Find the cards that create this effect:
             </p>
-            <p className="text-stone-50 text-xl font-serif">
-              {currentCombo.description}
-            </p>
+            <p className="text-stone-50 text-xl">{currentCombo.description}</p>
           </div>
 
           {/* Streak and settings on the right */}
@@ -107,7 +105,7 @@ export default function GameControls({
             className="flex items-center justify-center md:justify-end relative gap-2"
             ref={dropdownRef}
           >
-            <span className="bg-yellow-900/80 rounded-xl px-6 py-2 shadow text-stone-50 font-bold text-base font-serif whitespace-nowrap">
+            <span className="bg-yellow-900/80 rounded-xl px-6 py-2 shadow text-stone-50 font-bold text-base whitespace-nowrap">
               Winning Streak: {streak}
             </span>
             {/* Settings icon */}
@@ -142,7 +140,7 @@ export default function GameControls({
             {dropdownOpen && (
               <div className="absolute bottom-full right-0 mb-2 w-48 bg-yellow-900 border-2 border-yellow-400 rounded-xl shadow-lg z-50 animate-fade-in">
                 <button
-                  className="w-full text-left px-4 py-2 text-yellow-100 hover:bg-yellow-800/80 rounded-t-xl font-serif hover:cursor-pointer"
+                  className="w-full text-left px-4 py-2 text-yellow-100 hover:bg-yellow-800/80 rounded-t-xl hover:cursor-pointer"
                   onClick={() => {
                     setDropdownOpen(false);
                     onNewGame();
@@ -154,7 +152,7 @@ export default function GameControls({
                   href="https://github.com/christopherkade/mtg-combos/blob/main/data/combos.json"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block px-4 py-2 text-yellow-100 hover:bg-yellow-800/80 rounded-b-xl font-serif text-left"
+                  className="block px-4 py-2 text-yellow-100 hover:bg-yellow-800/80 rounded-b-xl text-left"
                   onClick={() => setDropdownOpen(false)}
                 >
                   Combo list
