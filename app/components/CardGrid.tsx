@@ -48,7 +48,6 @@ export default function CardGrid({
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
-  // Start 3s timer for each card on mount
   useEffect(() => {
     cards.forEach((card) => {
       if (!readyToFlip[card.id]) {
@@ -151,7 +150,7 @@ export default function CardGrid({
       <div
         ref={desktopContainerRef}
         className="hidden md:flex relative items-end justify-center w-full"
-        style={{ height: "400px" }}
+        style={{ height: "300px" }}
       >
         {cards.map((card, index) => {
           const imageUrl = getCardImage(card);

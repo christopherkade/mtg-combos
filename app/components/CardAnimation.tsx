@@ -27,7 +27,7 @@ export default function CardAnimation({
       cards.forEach((card, index) => {
         card.style.position = "fixed";
         card.style.left = `${centerX + index * 2}px`;
-        card.style.top = `${centerY}px`;
+        card.style.top = `${centerY - 50}px`;
         card.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
         card.style.zIndex = (index + 100).toString();
         card.style.transition = "all 1s ease-in-out";

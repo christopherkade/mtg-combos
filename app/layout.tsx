@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "MTG Combos - A Magic: The Gathering Mini Game",
-  description: "Find the Magic: The Gathering cards that create a specific combo !",
+  description:
+    "Find the Magic: The Gathering cards that create a specific combo !",
 };
 
 export default function RootLayout({
