@@ -22,6 +22,10 @@ export default function Home() {
   const [showCardAnimation, setShowCardAnimation] = useState(false);
   const [streak, setStreak] = useState(0);
   const [congrats, setCongrats] = useState<string | null>(null);
+  const [hintUsed, setHintUsed] = useState(false);
+  const [eliminatedCards, setEliminatedCards] = useState<Set<string>>(
+    new Set()
+  );
 
   const congratsMessages = [
     "Great job!",
@@ -42,6 +46,8 @@ export default function Home() {
       setLoading(true);
       setError(null);
       setSelectedCards(new Set());
+      setHintUsed(false);
+      setEliminatedCards(new Set());
       setGameResult(null);
       setShowResult(false);
       setShowCardAnimation(false);
@@ -139,6 +145,31 @@ export default function Home() {
     }
   };
 
+  const useHint = () => {
+    if (!currentCombo || hintUsed) return;
+
+    // Find wrong cards (cards that are not part of the combo)
+    const comboCardNames = currentCombo.cards;
+    const wrongCards = cards.filter(
+      (card) => !comboCardNames.includes(card.name)
+    );
+
+    // Find wrong cards that haven't been eliminated yet
+    const availableWrongCards = wrongCards.filter(
+      (card) => !eliminatedCards.has(card.id)
+    );
+
+    if (availableWrongCards.length > 0) {
+      // Randomly select one wrong card to eliminate
+      const randomWrongCard =
+        availableWrongCards[
+          Math.floor(Math.random() * availableWrongCards.length)
+        ];
+      setEliminatedCards((prev) => new Set([...prev, randomWrongCard.id]));
+      setHintUsed(true);
+    }
+  };
+
   const handleAnimationComplete = () => {
     fetchRandomCards();
   };
@@ -174,6 +205,7 @@ export default function Home() {
               cards={loading ? placeholderCards : cards}
               selectedCards={selectedCards}
               onCardClick={handleCardClick}
+              eliminatedCards={eliminatedCards}
             />
           </div>
         </main>
@@ -189,6 +221,8 @@ export default function Home() {
               fetchRandomCards();
             }}
             onCheckAnswer={validateSelection}
+            onUseHint={useHint}
+            hintUsed={hintUsed}
             streak={streak}
           />
         </div>

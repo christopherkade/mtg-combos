@@ -10,6 +10,7 @@ interface CardGridProps {
   cards: Card[];
   selectedCards: Set<string>;
   onCardClick: (cardId: string) => void;
+  eliminatedCards: Set<string>;
 }
 
 // CardBack component for Magic card back image
@@ -29,6 +30,7 @@ export default function CardGrid({
   cards,
   selectedCards,
   onCardClick,
+  eliminatedCards,
 }: CardGridProps) {
   const desktopContainerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -70,13 +72,14 @@ export default function CardGrid({
   }, [loaded, readyToFlip, cards]);
 
   return (
-    <div className="flex justify-center items-center h-full pb-50 md:pb-8">
+    <div className="flex justify-center items-center h-full pb-55 md:pb-8">
       {/* Mobile: Vertical stack with scroll */}
       <div className="md:hidden relative flex flex-col items-center h-full w-full px-4 overflow-y-auto py-4">
         {cards.map((card, index) => {
           const imageUrl = getCardImage(card);
           const cardName = getCardName(card);
           const isSelected = selectedCards.has(card.id);
+          const isEliminated = eliminatedCards.has(card.id);
 
           // Listen to "Enter" or "Space" press and select the focused card when used
           const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -92,16 +95,20 @@ export default function CardGrid({
             <div
               key={`${card.id}-${index}`}
               data-card-id={card.id}
-              onClick={() => onCardClick(card.id)}
-              className="mb-6 cursor-pointer"
+              onClick={() => !isEliminated && onCardClick(card.id)}
+              className={`mb-6 ${
+                isEliminated ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
             >
               <div
                 tabIndex={0}
-                className={`w-48 rounded-lg shadow-lg transition-all duration-300 md:hover:scale-105 md:hover:-translate-y-4 md:hover:-translate-x-2 ${
-                  isSelected ? "outline-2 outline-yellow-400" : ""
-                }`}
+                className={`w-48 rounded-lg shadow-lg transition-all duration-300 ${
+                  isEliminated
+                    ? "opacity-30 grayscale"
+                    : "md:hover:scale-105 md:hover:-translate-y-4 md:hover:-translate-x-2"
+                } ${isSelected ? "outline-2 outline-yellow-400" : ""}`}
                 style={{ aspectRatio: "2.5/3.5", position: "relative" }}
-                onKeyDown={handleKeyDown}
+                onKeyDown={!isEliminated ? handleKeyDown : undefined}
               >
                 <div
                   className={`card-flip${flipped[card.id] ? " flipped" : ""}`}
@@ -156,6 +163,7 @@ export default function CardGrid({
           const imageUrl = getCardImage(card);
           const cardName = getCardName(card);
           const isSelected = selectedCards.has(card.id);
+          const isEliminated = eliminatedCards.has(card.id);
 
           // Listen to "Enter" or "Space" press and select the focused card when used
           const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -181,9 +189,11 @@ export default function CardGrid({
             <div
               key={`${card.id}-${index}`}
               data-card-id={card.id}
-              onClick={() => onCardClick(card.id)}
-              onKeyDown={handleKeyDown}
-              className="absolute cursor-pointer"
+              onClick={() => !isEliminated && onCardClick(card.id)}
+              onKeyDown={!isEliminated ? handleKeyDown : undefined}
+              className={`absolute ${
+                isEliminated ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
               style={{
                 left: `${cardPosition}px`,
                 bottom: "20px",
@@ -192,9 +202,11 @@ export default function CardGrid({
             >
               <div
                 tabIndex={0}
-                className={`w-40 md:w-48 lg:w-56 rounded-lg shadow-lg transition-all hover:scale-110 hover:-translate-y-8 hover:-translate-x-4 hover:rotate-0 ${
-                  isSelected ? "outline-2 outline-yellow-400" : ""
-                }`}
+                className={`w-40 md:w-48 lg:w-56 rounded-lg shadow-lg transition-all ${
+                  isEliminated
+                    ? "opacity-30 grayscale"
+                    : "hover:scale-110 hover:-translate-y-8 hover:-translate-x-4 hover:rotate-0"
+                } ${isSelected ? "outline-2 outline-yellow-400" : ""}`}
                 style={{ aspectRatio: "2.5/3.5", position: "relative" }}
               >
                 <div

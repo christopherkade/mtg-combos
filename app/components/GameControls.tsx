@@ -10,6 +10,8 @@ interface GameControlsProps {
   showResult: boolean;
   onNewGame: () => void;
   onCheckAnswer: () => void;
+  onUseHint: () => void;
+  hintUsed: boolean;
   streak: number;
 }
 
@@ -20,6 +22,8 @@ export default function GameControls({
   showResult,
   onNewGame,
   onCheckAnswer,
+  onUseHint,
+  hintUsed,
   streak,
 }: GameControlsProps) {
   const [buttonLabel, setButtonLabel] = useState<"check" | "wrong">("check");
@@ -73,6 +77,17 @@ export default function GameControls({
               disabled={selectedCards.size < 1}
             >
               {buttonLabel === "wrong" ? "Wrong Answer" : "Check Answer"}
+            </button>
+            <button
+              onClick={onUseHint}
+              disabled={hintUsed}
+              className={`font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-colors duration-200 shadow-lg text-sm md:text-base font-serif border ${
+                hintUsed
+                  ? "bg-gray-600 text-gray-400 cursor-not-allowed opacity-50"
+                  : "bg-blue-700 hover:bg-blue-600 text-blue-100 text-stone-50 hover:shadow-xl cursor-pointer"
+              }`}
+            >
+              Hint
             </button>
           </div>
           {/* Effect text in the center */}
