@@ -73,6 +73,13 @@ body {
     transform: rotateY(180deg);
   }
 
+  /* Vertical text writing mode */
+  .writing-mode-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
   /* Custom mana symbol pulse animation */
   .animate-mana-pulse {
     animation: mana-pulse 0.8s ease-in-out infinite;

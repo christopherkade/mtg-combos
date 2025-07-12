@@ -12,6 +12,7 @@ interface GameControlsProps {
   onCheckAnswer: () => void;
   onUseHint: () => void;
   hintUsed: boolean;
+  loading: boolean;
   streak: number;
 }
 
@@ -24,6 +25,7 @@ export default function GameControls({
   onCheckAnswer,
   onUseHint,
   hintUsed,
+  loading,
   streak,
 }: GameControlsProps) {
   const [buttonLabel, setButtonLabel] = useState<"check" | "wrong">("check");
@@ -80,14 +82,14 @@ export default function GameControls({
             </button>
             <button
               onClick={onUseHint}
-              disabled={hintUsed}
+              disabled={hintUsed || loading}
               className={`font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg transition-colors duration-200 shadow-lg text-sm md:text-base font-serif border ${
-                hintUsed
+                hintUsed || loading
                   ? "bg-gray-600 text-gray-400 cursor-not-allowed opacity-50"
                   : "bg-blue-700 hover:bg-blue-600 text-blue-100 text-stone-50 hover:shadow-xl cursor-pointer"
               }`}
             >
-              Hint
+              {loading ? "Loading..." : "Hint"}
             </button>
           </div>
           {/* Effect text in the center */}

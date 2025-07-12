@@ -9,6 +9,8 @@ import GameControls from "./components/GameControls";
 import ErrorDisplay from "./components/ErrorDisplay";
 import CardAnimation from "./components/CardAnimation";
 import LoadingSpinner from "./components/LoadingSpinner";
+import HistoryPanel from "./components/HistoryPanel";
+import HistoryButton from "./components/HistoryButton";
 
 export default function Home() {
   const [cards, setCards] = useState<Card[]>([]);
@@ -26,6 +28,14 @@ export default function Home() {
   const [eliminatedCards, setEliminatedCards] = useState<Set<string>>(
     new Set()
   );
+  const [comboHistory, setComboHistory] = useState<
+    Array<{
+      combo: Combo;
+      cards: Card[];
+      timestamp: Date;
+    }>
+  >([]);
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 
   const congratsMessages = [
     "Great job!",
@@ -132,6 +142,15 @@ export default function Home() {
 
     if (isCorrect) {
       setStreak((prev) => prev + 1);
+      // Add combo to history
+      setComboHistory((prev) => [
+        ...prev,
+        {
+          combo: currentCombo,
+          cards: cards.filter((card) => currentCombo.cards.includes(card.name)),
+          timestamp: new Date(),
+        },
+      ]);
       // Show congrats overlay
       const msg =
         congratsMessages[Math.floor(Math.random() * congratsMessages.length)];
@@ -166,6 +185,16 @@ export default function Home() {
           Math.floor(Math.random() * availableWrongCards.length)
         ];
       setEliminatedCards((prev) => new Set([...prev, randomWrongCard.id]));
+
+      // If the eliminated card was selected, deselect it
+      if (selectedCards.has(randomWrongCard.id)) {
+        setSelectedCards((prev) => {
+          const newSelected = new Set(prev);
+          newSelected.delete(randomWrongCard.id);
+          return newSelected;
+        });
+      }
+
       setHintUsed(true);
     }
   };
@@ -198,6 +227,15 @@ export default function Home() {
       {showCardAnimation && (
         <CardAnimation onAnimationComplete={handleAnimationComplete} />
       )}
+      <HistoryButton
+        onClick={() => setIsHistoryOpen(true)}
+        comboCount={comboHistory.length}
+      />
+      <HistoryPanel
+        isOpen={isHistoryOpen}
+        onClose={() => setIsHistoryOpen(false)}
+        comboHistory={comboHistory}
+      />
       <>
         <main className="flex-1 p-4 md:p-6 overflow-hidden">
           <div className="w-full h-full mx-auto">
@@ -223,6 +261,7 @@ export default function Home() {
             onCheckAnswer={validateSelection}
             onUseHint={useHint}
             hintUsed={hintUsed}
+            loading={loading}
             streak={streak}
           />
         </div>
