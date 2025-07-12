@@ -9,6 +9,7 @@ interface GameControlsProps {
   gameResult: "win" | "lose" | null;
   showResult: boolean;
   onNewGame: () => void;
+  onResetProgress: () => void;
   onCheckAnswer: () => void;
   onUseHint: () => void;
   hintUsed: boolean;
@@ -22,6 +23,7 @@ export default function GameControls({
   gameResult,
   showResult,
   onNewGame,
+  onResetProgress,
   onCheckAnswer,
   onUseHint,
   hintUsed,
@@ -64,7 +66,7 @@ export default function GameControls({
   return (
     <div className="w-full text-center">
       {currentCombo && (
-        <div className="p-4 pb-6 bg-stone-900 border-y-6 border-slate-950 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="p-2 md:p-4 bg-stone-900 border-y-6 border-slate-950 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           {/* Buttons on the left */}
           <div className="flex flex-row gap-2 md:gap-4 items-center justify-center md:justify-start mb-4 md:mb-0">
             <button
@@ -94,10 +96,12 @@ export default function GameControls({
           </div>
           {/* Effect text in the center */}
           <div className="flex-1 text-center md:text-left">
-            <p className="text-yellow-200 font-semibold text-sm">
+            <p className="text-yellow-200 font-semibold text-xs md:text-sm">
               Find the cards that create this effect:
             </p>
-            <p className="text-stone-50 text-xl">{currentCombo.description}</p>
+            <p className="text-stone-50 text-md md:text-xl">
+              {currentCombo.description}
+            </p>
           </div>
 
           {/* Streak and settings on the right */}
@@ -105,7 +109,7 @@ export default function GameControls({
             className="flex items-center justify-center md:justify-end relative gap-2"
             ref={dropdownRef}
           >
-            <span className="bg-yellow-900/80 rounded-xl px-6 py-2 shadow text-stone-50 font-bold text-base whitespace-nowrap">
+            <span className="bg-yellow-900/80 rounded-xl px-6 py-2 shadow text-stone-50 font-bold text-xs md:text-base whitespace-nowrap">
               Winning Streak: {streak}
             </span>
             {/* Settings icon */}
@@ -147,6 +151,15 @@ export default function GameControls({
                   }}
                 >
                   Restart game
+                </button>
+                <button
+                  className="w-full text-left px-4 py-2 text-yellow-100 hover:bg-yellow-800/80 hover:cursor-pointer"
+                  onClick={() => {
+                    setDropdownOpen(false);
+                    onResetProgress();
+                  }}
+                >
+                  Reset progress
                 </button>
                 <a
                   href="https://github.com/christopherkade/mtg-combos/blob/main/data/combos.json"

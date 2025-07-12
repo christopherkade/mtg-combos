@@ -13,6 +13,13 @@ import HistoryPanel from "./components/HistoryPanel";
 import HistoryButton from "./components/HistoryButton";
 import ProgressBar from "./components/ProgressBar";
 
+// Local storage keys
+const STORAGE_KEYS = {
+  USED_COMBOS: "mtg-combos-used",
+  COMBO_HISTORY: "mtg-combos-history",
+  STREAK: "mtg-combos-streak",
+};
+
 export default function Home() {
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(true);
@@ -52,6 +59,70 @@ export default function Home() {
     "Excellent!",
     "You got it!",
   ];
+
+  // Load data from localStorage on component mount
+  useEffect(() => {
+    try {
+      // Load used combos
+      const savedUsedCombos = localStorage.getItem(STORAGE_KEYS.USED_COMBOS);
+      if (savedUsedCombos) {
+        setUsedCombos(new Set(JSON.parse(savedUsedCombos)));
+      }
+
+      // Load combo history
+      const savedHistory = localStorage.getItem(STORAGE_KEYS.COMBO_HISTORY);
+      if (savedHistory) {
+        const parsedHistory = JSON.parse(savedHistory);
+        // Convert timestamp strings back to Date objects
+        const historyWithDates = parsedHistory.map(
+          (entry: { combo: Combo; cards: Card[]; timestamp: string }) => ({
+            ...entry,
+            timestamp: new Date(entry.timestamp),
+          })
+        );
+        setComboHistory(historyWithDates);
+      }
+
+      // Load streak
+      const savedStreak = localStorage.getItem(STORAGE_KEYS.STREAK);
+      if (savedStreak) {
+        setStreak(parseInt(savedStreak, 10));
+      }
+    } catch (error) {
+      console.error("Error loading from localStorage:", error);
+    }
+  }, []);
+
+  // Save data to localStorage whenever it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        STORAGE_KEYS.USED_COMBOS,
+        JSON.stringify(Array.from(usedCombos))
+      );
+    } catch (error) {
+      console.error("Error saving used combos to localStorage:", error);
+    }
+  }, [usedCombos]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        STORAGE_KEYS.COMBO_HISTORY,
+        JSON.stringify(comboHistory)
+      );
+    } catch (error) {
+      console.error("Error saving combo history to localStorage:", error);
+    }
+  }, [comboHistory]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEYS.STREAK, streak.toString());
+    } catch (error) {
+      console.error("Error saving streak to localStorage:", error);
+    }
+  }, [streak]);
 
   const fetchRandomCards = async () => {
     try {
@@ -230,6 +301,23 @@ export default function Home() {
     fetchRandomCards();
   };
 
+  const resetProgress = () => {
+    // Clear localStorage
+    try {
+      localStorage.removeItem(STORAGE_KEYS.USED_COMBOS);
+      localStorage.removeItem(STORAGE_KEYS.COMBO_HISTORY);
+      localStorage.removeItem(STORAGE_KEYS.STREAK);
+    } catch (error) {
+      console.error("Error clearing localStorage:", error);
+    }
+
+    // Reset state
+    setStreak(0);
+    setUsedCombos(new Set());
+    setComboHistory([]);
+    fetchRandomCards();
+  };
+
   if (error) {
     return <ErrorDisplay error={error} onRetry={fetchRandomCards} />;
   }
@@ -245,7 +333,7 @@ export default function Home() {
   const foundCombos = comboHistory.length;
 
   return (
-    <div className="h-screen flex flex-col rounded-xl">
+    <div className="h-screen flex flex-col">
       {initialLoading && <LoadingSpinner />}
       {congrats && (
         <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
@@ -282,7 +370,7 @@ export default function Home() {
 
         <div
           className="fixed bottom-0 left-0 w-full z-40"
-          style={{ bottom: "48px" }}
+          style={{ bottom: "45px" }}
         >
           <GameControls
             currentCombo={currentCombo}
@@ -290,6 +378,7 @@ export default function Home() {
             gameResult={gameResult}
             showResult={showResult}
             onNewGame={resetGameSession}
+            onResetProgress={resetProgress}
             onCheckAnswer={validateSelection}
             onUseHint={useHint}
             hintUsed={hintUsed}
