@@ -13,6 +13,7 @@ import HistoryPanel from "./components/HistoryPanel";
 import HistoryButton from "./components/HistoryButton";
 import ProgressBar from "./components/ProgressBar";
 import Welcome from "./components/Welcome";
+import ConfirmationDialog from "./components/ConfirmationDialog";
 
 // Local storage keys
 const STORAGE_KEYS = {
@@ -47,6 +48,7 @@ export default function Home() {
   >([]);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [usedCombos, setUsedCombos] = useState<Set<string>>(new Set());
+  const [showResetConfirmation, setShowResetConfirmation] = useState(false);
 
   const congratsMessages = [
     "Great job!",
@@ -306,6 +308,10 @@ export default function Home() {
     fetchRandomCards();
   };
 
+  const confirmResetProgress = () => {
+    setShowResetConfirmation(true);
+  };
+
   const resetProgress = () => {
     // Clear localStorage
     try {
@@ -320,6 +326,7 @@ export default function Home() {
     setStreak(0);
     setUsedCombos(new Set());
     setComboHistory([]);
+    setShowResetConfirmation(false);
     fetchRandomCards();
   };
 
@@ -372,6 +379,15 @@ export default function Home() {
         onClose={() => setIsHistoryOpen(false)}
         comboHistory={comboHistory}
       />
+      <ConfirmationDialog
+        isOpen={showResetConfirmation}
+        title="Reset Progress"
+        message="Are you sure you want to reset all your progress? This will clear your combo history, winning streak, and start fresh. This action cannot be undone."
+        confirmText="Reset Progress"
+        cancelText="Keep Progress"
+        onConfirm={resetProgress}
+        onCancel={() => setShowResetConfirmation(false)}
+      />
       <>
         <main className="flex-1 p-4 md:p-6 overflow-hidden">
           <div className="w-full h-full mx-auto">
@@ -396,7 +412,7 @@ export default function Home() {
             gameResult={gameResult}
             showResult={showResult}
             onNewGame={resetGameSession}
-            onResetProgress={resetProgress}
+            onResetProgress={confirmResetProgress}
             onBackToHome={handleBackToHome}
             onCheckAnswer={validateSelection}
             onUseHint={useHint}
