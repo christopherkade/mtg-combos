@@ -11,7 +11,6 @@ interface GameControlsProps {
   showResult: boolean;
   onNewGame: () => void;
   onResetProgress: () => void;
-  onBackToHome: () => void;
   onCheckAnswer: () => void;
   onUseHint: () => void;
   hintUsed: boolean;
@@ -26,7 +25,6 @@ export default function GameControls({
   showResult,
   onNewGame,
   onResetProgress,
-  onBackToHome,
   onCheckAnswer,
   onUseHint,
   hintUsed,
@@ -93,7 +91,6 @@ export default function GameControls({
               Winning Streak: {streak}
             </span>
             <SettingsDropdown
-              onBackToHome={onBackToHome}
               onNewGame={onNewGame}
               onResetProgress={onResetProgress}
             />

@@ -1,18 +1,18 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface SettingsDropdownProps {
-  onBackToHome: () => void;
   onNewGame: () => void;
   onResetProgress: () => void;
 }
 
 export default function SettingsDropdown({
-  onBackToHome,
   onNewGame,
   onResetProgress,
 }: SettingsDropdownProps) {
+  const router = useRouter();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -68,7 +68,7 @@ export default function SettingsDropdown({
         <div className="absolute bottom-full right-0 mb-2 w-48 bg-yellow-900 border-2 border-yellow-400 rounded-xl shadow-lg z-50 animate-fade-in">
           <button
             className="w-full text-left px-4 py-2 text-yellow-100 hover:bg-yellow-800/80 rounded-t-xl hover:cursor-pointer"
-            onClick={() => closeAndExecute(onBackToHome)}
+            onClick={() => closeAndExecute(() => router.push("/"))}
           >
             Back to home screen
           </button>

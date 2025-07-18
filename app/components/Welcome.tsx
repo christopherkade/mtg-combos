@@ -1,10 +1,9 @@
 "use client";
 
-interface WelcomeProps {
-  onStartGame: () => void;
-}
+import { useRouter } from "next/navigation";
 
-export default function Welcome({ onStartGame }: WelcomeProps) {
+export default function Welcome() {
+  const router = useRouter();
   return (
     <div className="h-screen flex flex-col items-center justify-center relative overflow-hidden">
       {/* Background decoration */}
@@ -37,7 +36,7 @@ export default function Welcome({ onStartGame }: WelcomeProps) {
 
         {/* Start button */}
         <button
-          onClick={onStartGame}
+          onClick={() => router.push("/combos")}
           className="hover:cursor-pointer group relative inline-flex items-center justify-center px-8 sm:px-12 py-3 sm:py-4 text-lg sm:text-xl font-bold text-stone-50 bg-gradient-to-r from-green-700 to-green-600 rounded-xl shadow-2xl hover:from-green-600 hover:to-green-500 transition-all duration-300 transform hover:scale-105 hover:shadow-green-500/25 border-2 border-green-500/50 hover:border-green-400 w-full sm:w-auto max-w-xs mx-auto"
         >
           <span className="relative z-10">Start Game</span>

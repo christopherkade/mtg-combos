@@ -51,13 +51,22 @@ export default function CardGrid({
   }, []);
 
   useEffect(() => {
-    cards.forEach((card) => {
-      if (!readyToFlip[card.id]) {
-        setTimeout(() => {
-          setReadyToFlip((r) => ({ ...r, [card.id]: true }));
-        }, 1000);
-      }
-    });
+    // Reset animation states when new cards are loaded
+    setLoaded({});
+    setReadyToFlip({});
+    setFlipped({});
+
+    // Start flip timers for new cards
+    const timers = cards.map((card) =>
+      setTimeout(() => {
+        setReadyToFlip((r) => ({ ...r, [card.id]: true }));
+      }, 1000)
+    );
+
+    // Cleanup timers if cards change before they complete
+    return () => {
+      timers.forEach((timer) => clearTimeout(timer));
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cards]);
 
