@@ -12,6 +12,7 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import HistoryPanel from "./components/HistoryPanel";
 import HistoryButton from "./components/HistoryButton";
 import ProgressBar from "./components/ProgressBar";
+import Welcome from "./components/Welcome";
 
 // Local storage keys
 const STORAGE_KEYS = {
@@ -21,6 +22,7 @@ const STORAGE_KEYS = {
 };
 
 export default function Home() {
+  const [gameStarted, setGameStarted] = useState(false);
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(true);
   const [initialLoading, setInitialLoading] = useState(true);
@@ -189,8 +191,11 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchRandomCards();
-  }, []);
+    // Only fetch cards if game has started
+    if (gameStarted) {
+      fetchRandomCards();
+    }
+  }, [gameStarted]);
 
   useEffect(() => {
     if (showResult && gameResult === "lose") {
@@ -318,6 +323,14 @@ export default function Home() {
     fetchRandomCards();
   };
 
+  const handleStartGame = () => {
+    setGameStarted(true);
+  };
+
+  const handleBackToHome = () => {
+    setGameStarted(false);
+  };
+
   if (error) {
     return <ErrorDisplay error={error} onRetry={fetchRandomCards} />;
   }
@@ -332,12 +345,17 @@ export default function Home() {
   const totalCombos = (combosData.combos as Combo[]).length;
   const foundCombos = comboHistory.length;
 
+  // Show welcome screen if game hasn't started
+  if (!gameStarted) {
+    return <Welcome onStartGame={handleStartGame} />;
+  }
+
   return (
     <div className="h-screen flex flex-col">
       {initialLoading && <LoadingSpinner />}
       {congrats && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
-          <div className="bg-yellow-900/90 border-4 border-yellow-400 rounded-2xl px-12 py-8 shadow-2xl text-yellow-100 font-bold text-3xl text-center animate-fade-in">
+        <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none px-4">
+          <div className="bg-yellow-900/90 border-4 border-yellow-400 rounded-2xl px-6 sm:px-12 py-6 sm:py-8 shadow-2xl text-yellow-100 font-bold text-2xl sm:text-3xl text-center animate-fade-in max-w-sm sm:max-w-none">
             {congrats}
           </div>
         </div>
@@ -379,6 +397,7 @@ export default function Home() {
             showResult={showResult}
             onNewGame={resetGameSession}
             onResetProgress={resetProgress}
+            onBackToHome={handleBackToHome}
             onCheckAnswer={validateSelection}
             onUseHint={useHint}
             hintUsed={hintUsed}
