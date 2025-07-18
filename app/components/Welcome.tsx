@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import mtgLogoPng from "../../public/mtgLogo.png";
 
 export default function Welcome() {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function Welcome() {
         <div className="mb-6 sm:mb-8 flex flex-col items-center">
           <div className="relative w-64 sm:w-80 md:w-96 h-auto mb-3 sm:mb-4">
             <Image
-              src="/mtgLogo.png"
+              src={mtgLogoPng}
               alt="Magic: The Gathering Logo"
               width={400}
               height={150}
