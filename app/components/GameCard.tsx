@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { Card } from "../types";
 import { getCardImage, getCardName } from "../utils/cardUtils";
@@ -38,6 +39,7 @@ export default function GameCard({
   className = "",
   style = {},
 }: GameCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
   const imageUrl = getCardImage(card);
   const cardName = getCardName(card);
 
@@ -55,15 +57,31 @@ export default function GameCard({
     }
   };
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  // Calculate the z-index with hover boost
+  const cardStyle = {
+    ...style,
+    zIndex: isHovered ? 100 : style.zIndex || "auto",
+  };
+
   return (
     <div
       key={`${card.id}-${index}`}
       data-card-id={card.id}
       onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       className={`${
         isEliminated ? "cursor-not-allowed" : "cursor-pointer"
       } ${className}`}
-      style={style}
+      style={cardStyle}
     >
       <div
         tabIndex={0}
