@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import combosData from "../../data/combos.json";
 import { Card, Combo } from "../types";
 import { fetchCardByName } from "../utils/cardUtils";
+import { useGameStorage } from "../hooks/useGameStorage";
 import CardGrid from "../components/CardGrid";
 import GameControls from "../components/GameControls";
 import ErrorDisplay from "../components/ErrorDisplay";
@@ -14,15 +15,19 @@ import HistoryButton from "../components/HistoryButton";
 import ProgressBar from "../components/ProgressBar";
 import ConfirmationDialog from "../components/ConfirmationDialog";
 
-// Local storage keys
-const STORAGE_KEYS = {
-  USED_COMBOS: "mtg-combos-used",
-  COMBO_HISTORY: "mtg-combos-history",
-  STREAK: "mtg-combos-streak",
-};
-
 export default function CombosPage() {
   const fetchingRef = useRef(false);
+  const {
+    usedCombos,
+    setUsedCombos,
+    comboHistory,
+    setComboHistory,
+    streak,
+    setStreak,
+    resetProgress: resetGameProgress,
+    resetGameSession: resetSession,
+  } = useGameStorage();
+
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(true);
   const [initialLoading, setInitialLoading] = useState(true);
@@ -32,21 +37,12 @@ export default function CombosPage() {
   const [gameResult, setGameResult] = useState<"win" | "lose" | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [showCardAnimation, setShowCardAnimation] = useState(false);
-  const [streak, setStreak] = useState(0);
   const [congrats, setCongrats] = useState<string | null>(null);
   const [hintUsed, setHintUsed] = useState(false);
   const [eliminatedCards, setEliminatedCards] = useState<Set<string>>(
     new Set()
   );
-  const [comboHistory, setComboHistory] = useState<
-    Array<{
-      combo: Combo;
-      cards: Card[];
-      timestamp: Date;
-    }>
-  >([]);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
-  const [usedCombos, setUsedCombos] = useState<Set<string>>(new Set());
   const [showResetConfirmation, setShowResetConfirmation] = useState(false);
 
   const congratsMessages = [
@@ -62,70 +58,6 @@ export default function CombosPage() {
     "Excellent!",
     "You got it!",
   ];
-
-  // Load data from localStorage on component mount
-  useEffect(() => {
-    try {
-      // Load used combos
-      const savedUsedCombos = localStorage.getItem(STORAGE_KEYS.USED_COMBOS);
-      if (savedUsedCombos) {
-        setUsedCombos(new Set(JSON.parse(savedUsedCombos)));
-      }
-
-      // Load combo history
-      const savedHistory = localStorage.getItem(STORAGE_KEYS.COMBO_HISTORY);
-      if (savedHistory) {
-        const parsedHistory = JSON.parse(savedHistory);
-        // Convert timestamp strings back to Date objects
-        const historyWithDates = parsedHistory.map(
-          (entry: { combo: Combo; cards: Card[]; timestamp: string }) => ({
-            ...entry,
-            timestamp: new Date(entry.timestamp),
-          })
-        );
-        setComboHistory(historyWithDates);
-      }
-
-      // Load streak
-      const savedStreak = localStorage.getItem(STORAGE_KEYS.STREAK);
-      if (savedStreak) {
-        setStreak(parseInt(savedStreak, 10));
-      }
-    } catch (error) {
-      console.error("Error loading from localStorage:", error);
-    }
-  }, []);
-
-  // Save data to localStorage whenever it changes
-  useEffect(() => {
-    try {
-      localStorage.setItem(
-        STORAGE_KEYS.USED_COMBOS,
-        JSON.stringify(Array.from(usedCombos))
-      );
-    } catch (error) {
-      console.error("Error saving used combos to localStorage:", error);
-    }
-  }, [usedCombos]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(
-        STORAGE_KEYS.COMBO_HISTORY,
-        JSON.stringify(comboHistory)
-      );
-    } catch (error) {
-      console.error("Error saving combo history to localStorage:", error);
-    }
-  }, [comboHistory]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEYS.STREAK, streak.toString());
-    } catch (error) {
-      console.error("Error saving streak to localStorage:", error);
-    }
-  }, [streak]);
 
   const fetchRandomCards = useCallback(async () => {
     // Prevent multiple simultaneous calls
@@ -303,33 +235,19 @@ export default function CombosPage() {
   }, [fetchRandomCards]);
 
   const resetGameSession = useCallback(() => {
-    setStreak(0);
-    setUsedCombos(new Set());
-    setComboHistory([]);
+    resetSession();
     fetchRandomCards();
-  }, [fetchRandomCards]);
+  }, [resetSession, fetchRandomCards]);
 
   const confirmResetProgress = useCallback(() => {
     setShowResetConfirmation(true);
   }, []);
 
   const resetProgress = useCallback(() => {
-    // Clear localStorage
-    try {
-      localStorage.removeItem(STORAGE_KEYS.USED_COMBOS);
-      localStorage.removeItem(STORAGE_KEYS.COMBO_HISTORY);
-      localStorage.removeItem(STORAGE_KEYS.STREAK);
-    } catch (error) {
-      console.error("Error clearing localStorage:", error);
-    }
-
-    // Reset state
-    setStreak(0);
-    setUsedCombos(new Set());
-    setComboHistory([]);
+    resetGameProgress();
     setShowResetConfirmation(false);
     fetchRandomCards();
-  }, [fetchRandomCards]);
+  }, [resetGameProgress, fetchRandomCards]);
 
   if (error) {
     return <ErrorDisplay error={error} onRetry={fetchRandomCards} />;
