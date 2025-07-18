@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Welcome() {
   const router = useRouter();
@@ -11,15 +12,19 @@ export default function Welcome() {
 
       {/* Main content */}
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
-        {/* MTG Logo (text-based) */}
-        <div className="mb-6 sm:mb-8">
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold text-transparent bg-gradient-to-b from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text drop-shadow-2xl mb-2">
-            MAGIC
-          </h1>
-          <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-yellow-200 tracking-widest">
-            THE GATHERING
-          </p>
-          <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent mx-auto mt-3 sm:mt-4" />
+        {/* MTG Logo */}
+        <div className="mb-6 sm:mb-8 flex flex-col items-center">
+          <div className="relative w-64 sm:w-80 md:w-96 h-auto mb-3 sm:mb-4">
+            <Image
+              src="/mtgLogo.png"
+              alt="Magic: The Gathering Logo"
+              width={400}
+              height={150}
+              className="w-full h-auto drop-shadow-2xl"
+              priority
+            />
+          </div>
+          <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent mx-auto" />
         </div>
 
         {/* Subtitle */}
